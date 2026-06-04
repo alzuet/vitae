@@ -25,15 +25,15 @@ const nav = [
   ["marketing", "◩", "Marketing"],
   ["retos", "☆", "Retos"],
   ["fidelizacion", "◈", "Fidelización"],
-  ["wishlist", "♡", "Wishlist"],
   {
     key: "compras",
-    label: "Compras",
+    label: "Tienda online",
     icon: "◉",
     children: [
       ["compras", "◉", "Catálogo"],
       ["compra-rapida", "⇪", "Compra rápida"],
-      ["productos-comprados", "✓", "Mis productos comprados"]
+      ["productos-comprados", "✓", "Mis productos comprados"],
+      ["wishlist", "♡", "Wishlist"]
     ]
   },
   ["admin", "⚙", "Backoffice"]
@@ -51,9 +51,9 @@ const data = {
     email: "mariapilar.alzuet@theetailers.com"
   },
   orders: [
-    { id: "PV-2026-1482", date: "02/06/2026", status: "En preparación", total: 1268.4, lines: [["Oseogen Articular", 24, 418.8], ["Vitae Digest", 18, 299.7], ["Omega Pro", 30, 549.9]] },
-    { id: "PV-2026-1397", date: "24/05/2026", status: "Entregado", total: 842.6, lines: [["Inmuno Complex", 20, 312], ["Magnesio Plus", 32, 530.6]] },
-    { id: "PV-2026-1320", date: "12/05/2026", status: "Facturado", total: 1534.9, lines: [["Probiovance", 36, 734.4], ["Sueño Natural", 24, 384], ["Colágeno Forte", 18, 416.5]] }
+    { id: "PV-2026-1482", date: "02/06/2026", status: "En preparación", total: 1268.4, lines: [["ImmunoVita®", 24, 418.8], ["IntestVita® Enzymes", 18, 299.7], ["Equazen® Omega 3 y 6", 30, 549.9]] },
+    { id: "PV-2026-1397", date: "24/05/2026", status: "Entregado", total: 842.6, lines: [["RelifVita®", 20, 312], ["Magnesium6® seis sales de Magnesio", 32, 530.6]] },
+    { id: "PV-2026-1320", date: "12/05/2026", status: "Facturado", total: 1534.9, lines: [["FlexiVita® Pro", 36, 734.4], ["CalmTu® Night Retard", 24, 384], ["OlioVita® Protect, protector solar oral", 18, 416.5]] }
   ],
   invoices: [
     { id: "FV-2026-0912", date: "31/05/2026", status: "Pendiente", total: 1534.9 },
@@ -71,12 +71,50 @@ const data = {
     { id: "CAS-1017", category: "Facturación", product: "Factura FV-2026-0798", status: "Resuelto", date: "03/05/2026" }
   ],
   products: [
-    { id: 1, name: "Oseogen Articular", cat: "Articulaciones", price: 17.45, stock: "Disponible", discount: "12%" },
-    { id: 2, name: "Omega Pro", cat: "Cardiovascular", price: 18.33, stock: "Disponible", discount: "15%" },
-    { id: 3, name: "Probiovance", cat: "Digestivo", price: 20.4, stock: "48 h", discount: "10%" },
-    { id: 4, name: "Magnesio Plus", cat: "Energía", price: 16.58, stock: "Disponible", discount: "8%" },
-    { id: 5, name: "Inmuno Complex", cat: "Defensas", price: 15.6, stock: "Disponible", discount: "12%" },
-    { id: 6, name: "Sueño Natural", cat: "Bienestar", price: 16, stock: "Últimas unidades", discount: "6%" }
+    { id: 1, name: "ImmunoVita®", cat: "Defensas", price: 17.45, stock: "Disponible", discount: "12%", image: "https://www.vitae.es/wp-content/uploads/2024/08/ImmunoVita-300x300.jpg", tagline: "Apoyo diario para campañas de defensas." },
+    { id: 2, name: "ImmunoVita® Kids", cat: "Infantil", price: 16.9, stock: "Disponible", discount: "10%", image: "https://www.vitae.es/wp-content/uploads/2024/09/ImmunoVita-Kids-300x300.jpg", tagline: "Formato infantil para recomendación familiar." },
+    { id: 3, name: "IntestVita® Enzymes", cat: "Buenas digestiones", price: 19.75, stock: "48 h", discount: "9%", image: "https://www.vitae.es/wp-content/uploads/2024/09/IntestVita-Enzymes-2-300x300.jpg", tagline: "Soporte digestivo para comidas pesadas." },
+    { id: 4, name: "RelifVita®", cat: "Buenas digestiones", price: 18.6, stock: "Disponible", discount: "11%", image: "https://www.vitae.es/wp-content/uploads/2025/02/Relif-300x300.jpg", tagline: "Solución de mostrador para digestiones sensibles." },
+    { id: 5, name: "IntestVita® Transit", cat: "Buenas digestiones", price: 17.95, stock: "Disponible", discount: "8%", image: "https://www.vitae.es/wp-content/uploads/2024/08/IntestVita-Transit-300x300.jpg", tagline: "Rutina digestiva para tránsito intestinal." },
+    { id: 6, name: "IntestVita® Kids", cat: "Infantil", price: 16.3, stock: "Disponible", discount: "8%", image: "https://www.vitae.es/wp-content/uploads/2024/09/IntestVita-kids-300x300.jpg", tagline: "Cuidado digestivo para niños." },
+    { id: 7, name: "Reconnect®", cat: "Energía", price: 21.4, stock: "Disponible", discount: "13%", image: "https://www.vitae.es/wp-content/uploads/2024/07/Reconnect-1-300x300.jpg", tagline: "Energía y foco para picos de demanda." },
+    { id: 8, name: "OlioVita® Protect, protector solar oral", cat: "Piel y mucosas", price: 22.8, stock: "Disponible", discount: "15%", image: "https://www.vitae.es/wp-content/uploads/2024/09/OlioVita-Protect-5-300x300.jpg", tagline: "Campaña solar con protección desde dentro." },
+    { id: 9, name: "UrinVita®", cat: "Sistema urinario", price: 18.25, stock: "48 h", discount: "7%", image: "https://www.vitae.es/wp-content/uploads/2024/08/UrinVita-300x300.jpg", tagline: "Reposición rápida para bienestar urinario." },
+    { id: 10, name: "Vitalivio®", cat: "Contracturas y salud articular", price: 20.5, stock: "Disponible", discount: "12%", image: "https://www.vitae.es/wp-content/uploads/2024/09/Vitalivio-3-300x300.jpg", tagline: "Referencia para molestias y movilidad." },
+    { id: 11, name: "Vitatuss®", cat: "Defensas", price: 14.7, stock: "Disponible", discount: "6%", image: "https://www.vitae.es/wp-content/uploads/2024/09/Vitatuss_jarabe-300x300.jpg", tagline: "Apoyo estacional para el lineal de invierno." },
+    { id: 12, name: "Equazen® Omega 3 y 6", cat: "Corazón", price: 18.33, stock: "Disponible", discount: "15%", image: "https://www.vitae.es/wp-content/uploads/2024/09/equazen-1-300x300.jpg", tagline: "Omega 3 y 6 para recomendación familiar." },
+    { id: 13, name: "Vibracell®", cat: "Energía", price: 19.9, stock: "Disponible", discount: "9%", image: "https://www.vitae.es/wp-content/uploads/2024/08/Vibracell-300x300.jpg", tagline: "Formato líquido para energía diaria." },
+    { id: 14, name: "BucoVitae® alivio aftas bucales", cat: "Piel y mucosas", price: 13.95, stock: "Disponible", discount: "5%", image: "https://www.vitae.es/wp-content/uploads/2024/08/BucoVitae-300x300.webp", tagline: "Solución oral de alta rotación." },
+    { id: 15, name: "EnergyVita® Multivitamínico Concentrado", cat: "Energía", price: 20.9, stock: "Disponible", discount: "12%", image: "https://www.vitae.es/wp-content/uploads/2025/02/energyvita-300x300.jpg", tagline: "Multivitamínico para campañas de vitalidad." },
+    { id: 16, name: "Nubiocell®", cat: "Energía", price: 23.2, stock: "48 h", discount: "8%", image: "https://www.vitae.es/wp-content/uploads/2024/09/nubiocell-300x300.jpg", tagline: "Fórmula premium para recomendación avanzada." },
+    { id: 17, name: "Sikapur® med Herpes Labial", cat: "Piel y mucosas", price: 12.6, stock: "Disponible", discount: "5%", image: "https://www.vitae.es/wp-content/uploads/2024/09/Sikapur-m-300x300.jpg", tagline: "Producto específico para el mostrador." },
+    { id: 18, name: "Bi·Bran® suplemento inmunomodulador", cat: "Defensas", price: 25.8, stock: "Disponible", discount: "10%", image: "https://www.vitae.es/wp-content/uploads/2024/09/Bibran-300x300.jpg", tagline: "Defensas con posicionamiento especialista." },
+    { id: 19, name: "Magnesium6® seis sales de Magnesio", cat: "Contracturas y salud articular", price: 16.58, stock: "Disponible", discount: "8%", image: "https://www.vitae.es/wp-content/uploads/2024/09/Magnesium6-300x300.jpg", tagline: "Magnesio para recomendación transversal." },
+    { id: 20, name: "MagVita® Q10", cat: "Energía", price: 21.75, stock: "Disponible", discount: "10%", image: "https://www.vitae.es/wp-content/uploads/2025/01/magvita-300x300.jpg", tagline: "Energía y coenzima Q10 en reposición." },
+    { id: 21, name: "FlexiVita® Pro", cat: "Contracturas y salud articular", price: 20.4, stock: "Disponible", discount: "10%", image: "https://www.vitae.es/wp-content/uploads/2024/09/Flexivita-pro-300x300.jpg", tagline: "Cuidado articular para clientes activos." },
+    { id: 22, name: "CalmTu®", cat: "Estrés y ansiedad", price: 16.2, stock: "Disponible", discount: "7%", image: "https://www.vitae.es/wp-content/uploads/2024/08/CalmTu-300x300.webp", tagline: "Apoyo en rutinas de calma diaria." },
+    { id: 23, name: "Vitalivio® Cream crema antiinflamatoria", cat: "Contracturas y salud articular", price: 15.95, stock: "Disponible", discount: "6%", image: "https://www.vitae.es/wp-content/uploads/2024/09/VitalivioCream-300x300.jpg", tagline: "Formato tópico para completar recomendación." },
+    { id: 24, name: "CalmTu® Night Retard", cat: "Insomnio", price: 17.4, stock: "Últimas unidades", discount: "6%", image: "https://www.vitae.es/wp-content/uploads/2024/09/CalmTuNight-Retard-300x300.jpg", tagline: "Descanso nocturno con reposición sencilla." },
+    { id: 25, name: "Chlorella®", cat: "Detox", price: 18.7, stock: "Disponible", discount: "8%", image: "https://www.vitae.es/wp-content/uploads/2024/09/Chlorella-300x300.jpg", tagline: "Alga verde para campañas detox." },
+    { id: 26, name: "Chlorella® Plus", cat: "Detox", price: 20.1, stock: "Disponible", discount: "9%", image: "https://www.vitae.es/wp-content/uploads/2024/08/Chlorella-plus-300x300.jpg", tagline: "Formato plus para recomendación avanzada." },
+    { id: 27, name: "FlexiVita® Cream", cat: "Contracturas y salud articular", price: 15.8, stock: "Disponible", discount: "6%", image: "https://www.vitae.es/wp-content/uploads/2024/09/FlexiVita-Cream-300x300.jpg", tagline: "Complemento tópico para movilidad." },
+    { id: 28, name: "Calcium6®", cat: "Contracturas y salud articular", price: 17.2, stock: "48 h", discount: "7%", image: "https://www.vitae.es/wp-content/uploads/2024/09/Calcium6-300x300.jpg", tagline: "Minerales para salud ósea y muscular." },
+    { id: 29, name: "Ferrum6", cat: "Energía", price: 16.85, stock: "Disponible", discount: "7%", image: "https://www.vitae.es/wp-content/uploads/2024/09/Ferrum6-300x300.jpg", tagline: "Hierro para rutinas de energía." },
+    { id: 30, name: "IntestVita® one per day", cat: "Buenas digestiones", price: 19.2, stock: "Disponible", discount: "9%", image: "https://www.vitae.es/wp-content/uploads/2024/09/IntestVita-one-per-day-2-300x300.webp", tagline: "Digestivo diario en formato simple." },
+    { id: 31, name: "OlioVita® aceite de espino amarillo", cat: "Antioxidantes", price: 21.6, stock: "Disponible", discount: "12%", image: "https://www.vitae.es/wp-content/uploads/2024/08/OlioVita-01-300x300.webp", tagline: "Espino amarillo para cuidado integral." },
+    { id: 32, name: "OlioVita® Radiance", cat: "Piel y mucosas", price: 22.1, stock: "Disponible", discount: "12%", image: "https://www.vitae.es/wp-content/uploads/2025/08/radiance-300x300.jpg", tagline: "Cuidado luminoso para campañas de piel." },
+    { id: 33, name: "OlioVita® Vision", cat: "Antioxidantes", price: 23.6, stock: "48 h", discount: "10%", image: "https://www.vitae.es/wp-content/uploads/2026/02/Oliovita-Vision-Render-300x300.jpg", tagline: "Nueva referencia visual para salud ocular." },
+    { id: 34, name: "PowerVita®", cat: "Energía", price: 21.2, stock: "Disponible", discount: "9%", image: "https://www.vitae.es/wp-content/uploads/2026/03/powerVita-300x300.jpg", tagline: "Impulso diario para clientes activos." },
+    { id: 35, name: "OlioVita® Repair", cat: "Piel y mucosas", price: 20.7, stock: "Disponible", discount: "10%", image: "https://www.vitae.es/wp-content/uploads/2024/09/OlioVita-Repair-300x300.jpg", tagline: "Piel y mucosas en recomendación continuada." },
+    { id: 36, name: "OlioVita® Íntima", cat: "Piel y mucosas", price: 19.85, stock: "Disponible", discount: "9%", image: "https://www.vitae.es/wp-content/uploads/2024/08/Oliovita-intima-300x300.webp", tagline: "Cuidado íntimo dentro de la familia OlioVita." },
+    { id: 37, name: "OlioVita® Balm", cat: "Piel y mucosas", price: 11.9, stock: "Disponible", discount: "5%", image: "https://www.vitae.es/wp-content/uploads/2024/09/OlioVita-balm-300x300.jpg", tagline: "Formato balm para venta cruzada." },
+    { id: 38, name: "OlioVita® Balm Protect", cat: "Piel y mucosas", price: 12.4, stock: "Disponible", discount: "5%", image: "https://www.vitae.es/wp-content/uploads/2024/09/OlioVita-Balm-protect-300x300.jpg", tagline: "Protección diaria para labios y piel." },
+    { id: 39, name: "OlioVita® Gastro", cat: "Buenas digestiones", price: 20.3, stock: "Disponible", discount: "8%", image: "https://www.vitae.es/wp-content/uploads/2024/09/OlioVitaGastro-2-300x300.webp", tagline: "OlioVita orientado a bienestar digestivo." },
+    { id: 40, name: "Sikapur® med Gastro", cat: "Buenas digestiones", price: 13.8, stock: "Disponible", discount: "5%", image: "https://www.vitae.es/wp-content/uploads/2024/09/Sikapur-300x300.jpg", tagline: "Producto específico para molestias gástricas." },
+    { id: 41, name: "VitaminD3K2", cat: "Defensas", price: 17.75, stock: "Disponible", discount: "7%", image: "https://www.vitae.es/wp-content/uploads/2024/09/VitaminD1k2-300x300.jpg", tagline: "Vitamina D3 y K2 para recomendación anual." },
+    { id: 42, name: "Vitarlic® Cleanse", cat: "Detox", price: 18.95, stock: "Disponible", discount: "8%", image: "https://www.vitae.es/wp-content/uploads/2024/08/Vitarlic-Clease-300x300.jpg", tagline: "Línea Vitarlic para planes cleanse." },
+    { id: 43, name: "Vitarlic® Forte", cat: "Corazón", price: 19.45, stock: "Disponible", discount: "8%", image: "https://www.vitae.es/wp-content/uploads/2024/09/Vitarlic-forte-300x300.jpg", tagline: "Ajo negro para recomendación cardiovascular." },
+    { id: 44, name: "Vulbiotic®", cat: "Sistema urinario", price: 18.5, stock: "48 h", discount: "7%", image: "https://www.vitae.es/wp-content/uploads/2024/09/VulBiotic-5-300x300.webp", tagline: "Bienestar íntimo y urinario para reposición." }
   ],
   learning: [
     { title: "Ficha técnica Oseogen", type: "Ficha técnica", family: "Articulaciones", state: "Completada", progress: 100 },
@@ -598,7 +636,7 @@ function wishlist() {
 }
 
 function shopEntry() {
-  return page("Catálogo", "La tienda se abre en una ventana independiente con navegación y checkout propios.", `
+  return page("Tienda online", "La tienda se abre en una ventana independiente con navegación y checkout propios.", `
     <div class="panel shop-entry">
       <h2>Tienda Vitae B2B</h2>
       <p class="muted">Abre el proceso de compra simulado con header de tienda, categorías, catálogo, compra rápida por CSV y productos comprados.</p>
@@ -607,11 +645,12 @@ function shopEntry() {
 }
 
 function shop() {
+  const categories = ["Todos", ...Array.from(new Set(data.products.map(product => product.cat)))];
   return `
     ${cartFeedback()}
     <div class="filters">
       <input type="search" placeholder="Buscar producto" data-local-search>
-      ${["Todos","Articulaciones","Digestivo","Cardiovascular","Energía","Bienestar","Defensas"].map((f, i) => `<button class="chip ${i === 0 ? "active" : ""}" data-filter="${f}">${f}</button>`).join("")}
+      ${categories.map((f, i) => `<button class="chip ${i === 0 ? "active" : ""}" data-filter="${f}">${f}</button>`).join("")}
     </div>
     <div class="grid cols-3">${data.products.map(productCard).join("")}</div>
     ${shopCartDock("Carrito demo")}`;
@@ -621,13 +660,20 @@ function productCard(p) {
   const inputId = `qty-${p.id}`;
   const wasAdded = state.lastAdded?.id === p.id;
   return `<article class="card product-card searchable filterable ${wasAdded ? "just-added" : ""}" data-filter-value="${p.cat}">
-    <div class="product-art"><div class="product-box">V</div></div>
-    <div class="resource-body">
-      <span class="status ${statusClass(p.stock)}">${p.stock}</span>
+    <div class="product-art">
+      <span class="product-badge">-${p.discount}</span>
+      ${p.image ? `<img src="${p.image}" alt="${p.name}" loading="lazy">` : `<div class="product-box">V</div>`}
+      <span class="product-source">Vitae</span>
+    </div>
+    <div class="product-body">
+      <div class="product-meta">
+        <span class="status ${statusClass(p.stock)}">${p.stock}</span>
+        <span class="status info">${p.cat}</span>
+      </div>
       <h3>${p.name}</h3>
-      <p class="muted">${p.cat} · descuento ${p.discount}</p>
+      <p class="product-tagline">${p.tagline || p.cat}</p>
       <div class="buy-row">
-        <strong>${euro(p.price)}</strong>
+        <div class="price-block"><span>Precio farmacia</span><strong>${euro(p.price)}</strong></div>
         <label><span>Cant.</span><input id="${inputId}" type="number" min="1" value="1" data-qty-for="${p.id}"></label>
         <button class="${wasAdded ? "primary" : "secondary"}" data-add="${p.id}">${wasAdded ? "Añadido" : "Añadir"}</button>
       </div>
@@ -1226,7 +1272,15 @@ function downloadCsvSample() {
 }
 
 function sampleCsv() {
-  return "sku,producto,cantidad\nVIT-001,Oseogen Articular,12\nVIT-002,Omega Pro,6\nVIT-004,Magnesio Plus,10\n";
+  const rows = [
+    [1, 12],
+    [2, 6],
+    [4, 10]
+  ].map(([id, qty]) => {
+    const product = data.products.find(item => item.id === id);
+    return `VIT-${String(product.id).padStart(3, "0")},${product.name},${qty}`;
+  });
+  return `sku,producto,cantidad\n${rows.join("\n")}\n`;
 }
 
 function addSampleCsvToCart() {
