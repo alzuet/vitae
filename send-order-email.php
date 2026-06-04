@@ -6,14 +6,14 @@ header('Content-Type: application/json; charset=utf-8');
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
-    echo json_encode(['ok' => false, 'error' => 'Metodo no permitido']);
+    echo json_encode(['ok' => false, 'error' => 'Método no permitido']);
     exit;
 }
 
 $payload = json_decode((string) file_get_contents('php://input'), true);
 if (!is_array($payload)) {
     http_response_code(400);
-    echo json_encode(['ok' => false, 'error' => 'JSON invalido']);
+    echo json_encode(['ok' => false, 'error' => 'JSON inválido']);
     exit;
 }
 
@@ -77,7 +77,7 @@ function sendSmtp(string $dsn, string $fromEmail, string $fromName, string $to, 
 {
     $parts = parse_url($dsn);
     if (!is_array($parts) || empty($parts['host'])) {
-        throw new RuntimeException('MAILER_DSN SMTP invalido');
+        throw new RuntimeException('MAILER_DSN SMTP inválido');
     }
 
     $host = $parts['host'];
@@ -138,7 +138,7 @@ function smtpExpect($socket, int|array $expected): string
     do {
         $line = fgets($socket);
         if ($line === false) {
-            throw new RuntimeException('Respuesta SMTP vacia');
+            throw new RuntimeException('Respuesta SMTP vacía');
         }
         $response .= $line;
     } while (isset($line[3]) && $line[3] === '-');

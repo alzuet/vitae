@@ -10,6 +10,7 @@ const nav = [
   ["dashboard", "⌂", "Dashboard"],
   ["mi-cuenta", "◎", "Mi cuenta"],
   {
+    key: "operativa",
     label: "Operativa",
     icon: "▦",
     children: [
@@ -26,6 +27,7 @@ const nav = [
   ["fidelizacion", "◈", "Fidelización"],
   ["wishlist", "♡", "Wishlist"],
   {
+    key: "compras",
     label: "Compras",
     icon: "◉",
     children: [
@@ -128,10 +130,10 @@ const data = {
       duration: "14 dias",
       participants: 38,
       progress: 18,
-      goal: "Crear un escaparate visible con el producto recomendado, subir una foto y registrar una accion de consejo vinculada.",
-      steps: ["Descargar creatividad", "Montar exposicion", "Subir fotografia", "Registrar accion en mostrador"],
+      goal: "Crear un escaparate visible con el producto recomendado, subir una foto y registrar una acción de consejo vinculada.",
+      steps: ["Descargar creatividad", "Montar exposición", "Subir fotografía", "Registrar acción en mostrador"],
       requirement: "1 foto del escaparate y 3 recomendaciones registradas",
-      validation: "Revision por el equipo Vitae en 48 h"
+      validation: "Revisión por el equipo Vitae en 48 h"
     },
     {
       title: "Semana Digestiva Probiovance",
@@ -145,7 +147,7 @@ const data = {
       goal: "Activar una semana de consejo digestivo con material de mostrador, argumentario breve y registro de recomendaciones de Probiovance.",
       steps: ["Descargar argumentario", "Colocar material de mostrador", "Registrar recomendaciones", "Subir resumen semanal"],
       requirement: "6 recomendaciones registradas y 1 resumen de actividad",
-      validation: "Revision por marketing y delegado comercial"
+      validation: "Revisión por marketing y delegado comercial"
     },
     {
       title: "Sprint Omega Pro mostrador",
@@ -159,7 +161,7 @@ const data = {
       goal: "Impulsar la recomendacion activa de Omega Pro en clientes interesados en bienestar cardiovascular y adherencia a rutinas saludables.",
       steps: ["Completar ficha rapida", "Preparar guion de consejo", "Registrar 5 conversaciones", "Enviar evidencia final"],
       requirement: "5 conversaciones documentadas y test de producto completado",
-      validation: "Validacion automatica mas revision muestral"
+      validation: "Validación automática más revisión muestral"
     },
     {
       title: "Plan sueño y descanso",
@@ -170,10 +172,10 @@ const data = {
       duration: "14 dias",
       participants: 18,
       progress: 0,
-      goal: "Crear una accion de recomendacion sobre descanso con Sueño Natural, enfocada en rutina nocturna, continuidad y seguimiento del cliente.",
-      steps: ["Revisar guia de descanso", "Crear exposicion mini", "Registrar casos de consejo", "Completar cierre del reto"],
-      requirement: "4 casos de consejo y foto de exposicion mini",
-      validation: "Revision manual en 72 h"
+      goal: "Crear una acción de recomendación sobre descanso con Sueño Natural, enfocada en rutina nocturna, continuidad y seguimiento del cliente.",
+      steps: ["Revisar guía de descanso", "Crear exposición mini", "Registrar casos de consejo", "Completar cierre del reto"],
+      requirement: "4 casos de consejo y foto de exposición mini",
+      validation: "Revisión manual en 72 h"
     },
     {
       title: "Formación equipo completo",
@@ -187,7 +189,7 @@ const data = {
       goal: "Conseguir que todos los contactos de la farmacia completen la capsula trimestral y respondan el test final.",
       steps: ["Invitar equipo", "Completar capsula", "Superar test", "Validar participantes"],
       requirement: "4 miembros con test aprobado",
-      validation: "Validacion automatica al superar el 80%"
+      validation: "Validación automática al superar el 80%"
     },
     {
       title: "Validación consejo activo",
@@ -201,7 +203,7 @@ const data = {
       goal: "Registrar recomendaciones reales de Oseogen Articular y adjuntar el resumen de casos atendidos durante la semana.",
       steps: ["Revisar argumentario", "Registrar consejos", "Adjuntar resumen", "Esperar validacion"],
       requirement: "5 consejos activos documentados",
-      validation: "Revision manual del delegado asignado"
+      validation: "Revisión manual del delegado asignado"
     },
     {
       title: "Campaña primavera",
@@ -212,9 +214,9 @@ const data = {
       duration: "30 dias",
       participants: 52,
       progress: 100,
-      goal: "Completar la campana estacional con exposicion, formacion rapida y pedido minimo de reposicion.",
-      steps: ["Activar campana", "Hacer pedido minimo", "Usar material PLV", "Cerrar evidencias"],
-      requirement: "Pedido minimo y evidencia de exposicion",
+      goal: "Completar la campaña estacional con exposición, formación rápida y pedido mínimo de reposición.",
+      steps: ["Activar campaña", "Hacer pedido mínimo", "Usar material PLV", "Cerrar evidencias"],
+      requirement: "Pedido mínimo y evidencia de exposición",
       validation: "Reto cerrado"
     }
   ],
@@ -239,7 +241,8 @@ const state = {
   adminModule: "usuarios",
   adminSearch: "",
   adminCreated: {},
-  adminNotice: ""
+  adminNotice: "",
+  collapsedNavGroups: {}
 };
 const euro = value => value.toLocaleString("es-ES", { style: "currency", currency: "EUR" });
 const el = id => document.getElementById(id);
@@ -266,6 +269,12 @@ function init() {
   });
   el("menuToggle").addEventListener("click", () => document.querySelector(".sidebar").classList.toggle("open"));
   el("globalSearch").addEventListener("input", event => filterCards(event.target.value));
+  el("profileBtn").addEventListener("click", () => {
+    state.section = "mi-cuenta";
+    document.querySelector(".sidebar").classList.remove("open");
+    renderNav();
+    render();
+  });
   renderNav();
   render();
 }
@@ -273,17 +282,23 @@ function init() {
 function renderNav() {
   el("mainNav").innerHTML = nav.map(item => {
     if (Array.isArray(item)) return navButton(item);
-    const visibleChildren = item.children.filter(([key]) => allowed(key) || roles[state.role].sections === "all");
-    if (!visibleChildren.length) return "";
     const groupActive = item.children.some(([key]) => state.section === key);
+    const collapsed = Boolean(state.collapsedNavGroups[item.key]);
     return `
-      <div class="nav-group ${groupActive ? "active" : ""}">
-        <div class="nav-group-label"><span>${item.icon}</span><span>${item.label}</span></div>
-        <div class="nav-children">
+      <div class="nav-group ${groupActive ? "active" : ""} ${collapsed ? "collapsed" : ""}">
+        <button class="nav-group-label" type="button" data-nav-group="${item.key}" aria-expanded="${!collapsed}">
+          <span>${item.icon}</span><span>${item.label}</span><span class="nav-group-toggle">⌄</span>
+        </button>
+        <div class="nav-children" ${collapsed ? "hidden" : ""}>
           ${item.children.map(child => navButton(child, true)).join("")}
         </div>
       </div>`;
   }).join("");
+  document.querySelectorAll(".nav-group-label").forEach(btn => btn.addEventListener("click", () => {
+    const key = btn.dataset.navGroup;
+    state.collapsedNavGroups[key] = !state.collapsedNavGroups[key];
+    renderNav();
+  }));
   document.querySelectorAll(".nav-btn").forEach(btn => btn.addEventListener("click", () => {
     if (!allowed(btn.dataset.section)) return;
     if (shopSectionTab(btn.dataset.section)) {
@@ -539,7 +554,7 @@ function challenges() {
       <div class="resource-body">
         <span class="status ${statusClass(challengeState(r, i))}">${challengeState(r, i)}</span>
         <h3>${r.title}</h3>
-        <p class="muted">Recompensa: ${r.reward}<br>Fecha limite: ${r.deadline}</p>
+        <p class="muted">Recompensa: ${r.reward}<br>Fecha límite: ${r.deadline}</p>
         <div class="progress challenge-progress"><span style="width:${challengeProgress(r, i)}%"></span></div>
         <div class="actions">
           ${challengeState(r, i) === "Disponible" ? `<button class="secondary" data-challenge-detail="${i}">Ver detalle</button>` : ""}
@@ -766,7 +781,7 @@ function confirmationPage() {
       <div class="confirmation-hero">
         <span class="status">Pedido confirmado</span>
         <h1>${order.id}</h1>
-        <p>El pedido se ha registrado correctamente. La confirmacion se envia a ${email.to} usando la configuracion SMTP de Capataz.</p>
+        <p>El pedido se ha registrado correctamente. La confirmación se envía a ${email.to} usando la configuración SMTP de Capataz.</p>
         <div class="actions">
           <button class="primary" data-shop-tab="catalogo">Volver al catalogo</button>
           <button class="secondary" data-shop-tab="comprados">Reponer productos</button>
@@ -792,7 +807,7 @@ function confirmationPage() {
           </div>
         </article>
       </div>
-      <article class="email-preview confirmation-email" aria-label="Correo de confirmacion">
+      <article class="email-preview confirmation-email" aria-label="Correo de confirmación">
         <div class="email-preheader">${email.preheader}</div>
         <div class="email-hero">
           <div>
@@ -804,7 +819,7 @@ function confirmationPage() {
         </div>
         <div class="email-body">
           <p>Hola ${data.pharmacy.owner},</p>
-          <p>Hemos recibido el pedido <strong>${order.id}</strong> de <strong>${data.pharmacy.name}</strong>. La entrega se realizara en la direccion seleccionada.</p>
+          <p>Hemos recibido el pedido <strong>${order.id}</strong> de <strong>${data.pharmacy.name}</strong>. La entrega se realizará en la dirección seleccionada.</p>
           <div class="email-info-grid">
             <div><span>Total</span><strong>${euro(order.total)}</strong></div>
             <div><span>Unidades</span><strong>${order.units}</strong></div>
@@ -1327,20 +1342,20 @@ function openChallengeDetail(index) {
             ${current === "Disponible" ? `<button class="primary" data-modal-challenge-join="${index}">Inscribirme al reto</button>` : ""}
             ${current === "Inscrito" ? `<button class="primary" data-fake-progress="${index}">Registrar avance</button>` : ""}
             ${current === "Inscrito" ? `<button class="secondary" data-modal-challenge-leave="${index}">Desinscribirme</button>` : ""}
-            ${email ? `<button class="secondary" data-email-detail="${index}">Ver email generado</button>` : ""}
+            ${email ? `<button class="secondary" data-email-detail="${index}">Ver correo</button>` : ""}
             <button class="secondary">Descargar bases</button>
           </div>
         </div>
         <div class="challenge-prize">
           <span>Recompensa</span>
           <strong>${challenge.reward}</strong>
-          <small>Fecha limite ${challenge.deadline}</small>
+          <small>Fecha límite ${challenge.deadline}</small>
         </div>
       </div>
 
       <div class="sheet-metrics">
-        ${sheetMetric("Categoria", challenge.category, "☆")}
-        ${sheetMetric("Duracion", challenge.duration, "◎")}
+        ${sheetMetric("Categoría", challenge.category, "☆")}
+        ${sheetMetric("Duración", challenge.duration, "◎")}
         ${sheetMetric("Participantes", String(challenge.participants), "◌")}
         ${sheetMetric("Progreso", `${progress}%`, "↗")}
       </div>
@@ -1360,8 +1375,8 @@ function openChallengeDetail(index) {
         <article class="sheet-panel">
           <h3>Condiciones</h3>
           ${kv("Requisito", challenge.requirement)}
-          ${kv("Validacion", challenge.validation)}
-          ${kv("Funcionamiento demo", "La inscripcion y el avance se guardan solo durante esta sesion.")}
+          ${kv("Validación", challenge.validation)}
+          ${kv("Funcionamiento", "La inscripción y el avance se guardan durante esta sesión.")}
         </article>
       </div>
     </section>`, "modal-card wide-modal product-sheet-modal");
@@ -1376,11 +1391,11 @@ function openChallengeSignup(index) {
   const challenge = data.challenges[index];
   openModal("Confirmar inscripción", `
     <form class="form-grid signup-form" data-challenge-signup-form="${index}">
-      <p class="wide muted">Confirma el email donde quieres recibir la información del reto. La demo generará el correo, pero no enviará nada real desde el navegador.</p>
+      <p class="wide muted">Confirma el correo donde quieres recibir la información del reto. Al confirmar, enviaremos el correo de inscripción.</p>
       ${kv("Reto", challenge.title)}
       ${kv("Recompensa", challenge.reward)}
       <label class="wide">
-        <span>Email de confirmación</span>
+        <span>Correo de confirmación</span>
         <input type="email" value="${data.pharmacy.email}" placeholder="tu@email.com" data-signup-email required>
       </label>
       <label class="wide check-field">
@@ -1402,11 +1417,12 @@ function openChallengeSignup(index) {
   document.querySelectorAll("[data-close-signup]").forEach(btn => btn.addEventListener("click", closeModal));
 }
 
-function joinChallenge(index, email) {
+async function joinChallenge(index, email) {
   state.challengeOverrides[index] = { state: "Inscrito", progress: Math.max(25, data.challenges[index].progress) };
   state.challengeEmails[index] = buildChallengeEmail(index, email);
   render();
   openChallengeEmail(index);
+  await sendChallengeEmail(index);
 }
 
 function openChallengeUnsubscribe(index) {
@@ -1452,10 +1468,11 @@ function buildChallengeEmail(index, recipient = data.pharmacy.email) {
   const challenge = data.challenges[index];
   return {
     to: recipient,
-    from: "retos@vitae.demo",
-    subject: `Inscripcion confirmada: ${challenge.title}`,
-    provider: "SendGrid demo",
-    status: "Generado para envio",
+    from: "retos@vitae.com",
+    subject: `Inscripción confirmada: ${challenge.title}`,
+    provider: "SMTP",
+    status: "Enviando",
+    error: "",
     createdAt: new Date().toLocaleString("es-ES", { dateStyle: "medium", timeStyle: "short" }),
     preheader: `${data.pharmacy.name} ya participa en ${challenge.title}. Recompensa: ${challenge.reward}.`,
     challenge
@@ -1469,15 +1486,13 @@ function openChallengeEmail(index) {
     <section class="email-confirmation">
       <div class="email-meta-panel">
         <div>
-          <span class="status">Email generado</span>
-          <h2>Confirmacion de inscripcion lista para enviar</h2>
-          <p class="muted">La demo genera la pieza transaccional con los datos relevantes del reto. El envio real debe ejecutarse desde backend con SendGrid.</p>
+          <span class="status ${email.status === "Error de envío" ? "danger" : email.status === "Enviado" ? "" : "warn"}">${email.status}</span>
+          <h2>Confirmación de inscripción</h2>
+          <p class="muted">${email.status === "Enviado" ? "El correo de inscripción se ha enviado correctamente." : email.status === "Error de envío" ? `No se ha podido enviar el correo: ${email.error}` : "Estamos enviando el correo de inscripción."}</p>
         </div>
         <div class="email-routing">
           ${kv("Para", email.to)}
-          ${kv("De", email.from)}
           ${kv("Asunto", email.subject)}
-          ${kv("Proveedor", email.provider)}
           ${kv("Estado", email.status)}
         </div>
       </div>
@@ -1496,27 +1511,78 @@ function openChallengeEmail(index) {
   }));
 }
 
+async function sendChallengeEmail(index) {
+  const email = state.challengeEmails[index];
+  if (!email) return;
+
+  email.status = "Enviando";
+  email.error = "";
+
+  try {
+    const response = await fetch("send-order-email.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        to: email.to,
+        subject: email.subject,
+        body: challengeEmailText(email)
+      })
+    });
+    const result = await response.json();
+    if (!response.ok || !result.ok) throw new Error(result.error || "No se pudo enviar");
+    email.status = "Enviado";
+  } catch (error) {
+    email.status = "Error de envío";
+    email.error = error.message;
+  }
+
+  openChallengeEmail(index);
+}
+
+function challengeEmailText(email) {
+  const challenge = email.challenge;
+  const steps = challenge.steps.map(step => `- ${step}`).join("\n");
+  return `Hola ${data.pharmacy.owner},
+
+Hemos confirmado la inscripción de ${data.pharmacy.name} en el reto ${challenge.title}. Ya podéis empezar a completar los pasos y registrar las evidencias desde el portal.
+
+Objetivo:
+${challenge.goal}
+
+Recompensa: ${challenge.reward}
+Fecha límite: ${challenge.deadline}
+Duración: ${challenge.duration}
+Categoría: ${challenge.category}
+Validación: ${challenge.validation}
+
+Pasos para completar el reto:
+${steps}
+
+Requisito principal:
+${challenge.requirement}`;
+}
+
 function challengeEmailMarkup(email) {
   const challenge = email.challenge;
   return `
-    <article class="email-preview" aria-label="Vista previa de email">
+    <article class="email-preview" aria-label="Vista previa de correo">
       <div class="email-preheader">${email.preheader}</div>
       <div class="email-hero">
         <div>
           <span>VITAE RETOS</span>
-          <h3>Tu farmacia ya esta inscrita</h3>
+          <h3>Tu farmacia ya está inscrita</h3>
           <p>${challenge.goal}</p>
         </div>
         <strong>${challenge.reward}</strong>
       </div>
       <div class="email-body">
         <p>Hola ${data.pharmacy.owner},</p>
-        <p>Hemos confirmado la inscripcion de <strong>${data.pharmacy.name}</strong> en el reto <strong>${challenge.title}</strong>. Ya podeis empezar a completar los pasos y registrar las evidencias desde el portal.</p>
+        <p>Hemos confirmado la inscripción de <strong>${data.pharmacy.name}</strong> en el reto <strong>${challenge.title}</strong>. Ya podéis empezar a completar los pasos y registrar las evidencias desde el portal.</p>
         <div class="email-info-grid">
-          <div><span>Fecha limite</span><strong>${challenge.deadline}</strong></div>
-          <div><span>Duracion</span><strong>${challenge.duration}</strong></div>
-          <div><span>Categoria</span><strong>${challenge.category}</strong></div>
-          <div><span>Validacion</span><strong>${challenge.validation}</strong></div>
+          <div><span>Fecha límite</span><strong>${challenge.deadline}</strong></div>
+          <div><span>Duración</span><strong>${challenge.duration}</strong></div>
+          <div><span>Categoría</span><strong>${challenge.category}</strong></div>
+          <div><span>Validación</span><strong>${challenge.validation}</strong></div>
         </div>
         <h4>Pasos para completar el reto</h4>
         <ol>
@@ -1528,7 +1594,6 @@ function challengeEmailMarkup(email) {
         </div>
         <a class="email-cta" href="#">Entrar al portal y continuar</a>
       </div>
-      <div class="email-footer">Email transaccional de demostracion generado el ${email.createdAt}. No se ha enviado ningun mensaje real desde el navegador.</div>
     </article>`;
 }
 
@@ -1538,7 +1603,7 @@ function studyDetail() {
       ${detailHero("Estudio clínico · Cardiovascular", "Omega Pro y perfil lipídico", "Resumen ejecutivo de un estudio ficticio para apoyar el consejo farmacéutico sobre suplementación con omega 3 de alta concentración.", "study")}
       <div class="sheet-metrics">
         ${sheetMetric("Muestra", "184 pacientes", "◌")}
-        ${sheetMetric("Duracion", "12 semanas", "◎")}
+        ${sheetMetric("Duración", "12 semanas", "◎")}
         ${sheetMetric("Lectura", "8 min", "◇")}
         ${sheetMetric("Nivel", "Avanzado", "↗")}
       </div>
@@ -1582,7 +1647,7 @@ function trainingVideoDetail() {
         <div class="video-frame"><div class="play-button">▶</div><span>04:35</span></div>
         <div class="media-side">
           ${sheetMetric("Progreso", "0%", "◌")}
-          ${sheetMetric("Duracion", "4 min", "◎")}
+        ${sheetMetric("Duración", "4 min", "◎")}
           ${sheetMetric("Test", "5 preguntas", "◇")}
         </div>
       </div>
@@ -1636,7 +1701,7 @@ function trainingPresentationDetail() {
 function knowledgeDetail(title, type) {
   const meta = {
     "Artículo": ["Lectura", "6 min", "articulo"],
-    "Webinar": ["Duracion", "42 min", "webinar"],
+    "Webinar": ["Duración", "42 min", "webinar"],
     "Podcast": ["Audio", "18 min", "podcast"],
     "Estudio": ["Lectura", "10 min", "study"]
   }[type] || ["Recurso", "Disponible", "articulo"];
@@ -1646,7 +1711,7 @@ function knowledgeDetail(title, type) {
       ${detailHero(`${type} · Knowledge`, title, "Contenido editorial para mantenerse al día en suplementación, evidencia aplicada y consejo farmacéutico.", meta[2])}
       <div class="sheet-metrics">
         ${sheetMetric(meta[0], meta[1], "◎")}
-        ${sheetMetric("Categoria", "Bienestar", "◇")}
+        ${sheetMetric("Categoría", "Bienestar", "◇")}
         ${sheetMetric("Publicado", "Mayo 2026", "◌")}
         ${sheetMetric("Valoracion", "4.8/5", "☆")}
       </div>
@@ -1982,11 +2047,11 @@ function createConfirmationEmail(order) {
   const email = {
     orderId: order.id,
     to: data.pharmacy.email,
-    subject: `Confirmacion de pedido ${order.id}`,
+    subject: `Confirmación de pedido ${order.id}`,
     preheader: `Pedido ${order.id} confirmado por ${euro(order.total)}`,
     summary: `${order.units} unidades confirmadas por ${euro(order.total)}.`,
     createdAt: new Date().toLocaleString("es-ES"),
-    status: "Pendiente de envio",
+    status: "Pendiente de envío",
     error: ""
   };
   state.confirmationEmails.push(email);
@@ -2055,7 +2120,7 @@ async function sendConfirmationEmailById(orderId) {
     if (!response.ok || !result.ok) throw new Error(result.error || "No se pudo enviar");
     email.status = "Enviado";
   } catch (error) {
-    email.status = "Error de envio";
+    email.status = "Error de envío";
     email.error = error.message;
   }
 

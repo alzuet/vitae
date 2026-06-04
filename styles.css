@@ -89,18 +89,31 @@ button { cursor: pointer; }
   display: flex;
   align-items: center;
   gap: 10px;
+  width: 100%;
   min-height: 42px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
   padding: 10px 12px;
   color: var(--ink);
   font-weight: 700;
+  text-align: left;
 }
 .nav-group-label span:first-child { width: 22px; text-align: center; color: var(--sage-dark); }
-.nav-group.active .nav-group-label { background: var(--surface-soft); border-radius: 8px; }
+.nav-group-label:hover, .nav-group.active .nav-group-label { background: var(--surface-soft); }
+.nav-group-toggle {
+  width: auto;
+  margin-left: auto;
+  color: var(--muted);
+  transition: transform 0.18s ease;
+}
+.nav-group.collapsed .nav-group-toggle { transform: rotate(-90deg); }
 .nav-children {
   display: grid;
   gap: 2px;
   padding-left: 18px;
 }
+.nav-children[hidden] { display: none; }
 .nav-btn.child {
   min-height: 36px;
   padding: 8px 12px;
