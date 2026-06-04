@@ -659,10 +659,11 @@ function shop() {
 function productCard(p) {
   const inputId = `qty-${p.id}`;
   const wasAdded = state.lastAdded?.id === p.id;
+  const image = productImage(p);
   return `<article class="card product-card searchable filterable ${wasAdded ? "just-added" : ""}" data-filter-value="${p.cat}">
     <div class="product-art">
       <span class="product-badge">-${p.discount}</span>
-      ${p.image ? `<img src="${p.image}" alt="${p.name}" loading="lazy">` : `<div class="product-box">V</div>`}
+      ${image ? `<img src="${image}" alt="${p.name}" loading="lazy">` : `<div class="product-box">V</div>`}
       <span class="product-source">Vitae</span>
     </div>
     <div class="product-body">
@@ -679,6 +680,12 @@ function productCard(p) {
       </div>
     </div>
   </article>`;
+}
+
+function productImage(p) {
+  const webpIds = new Set([14, 22, 30, 31, 36, 39, 44]);
+  const ext = webpIds.has(p.id) ? "webp" : "jpg";
+  return `assets/products/vit-${String(p.id).padStart(3, "0")}.${ext}`;
 }
 
 function renderShopWindow() {
