@@ -81,6 +81,31 @@ button { cursor: pointer; }
 }
 .nav-btn span:first-child { width: 22px; text-align: center; color: var(--sage-dark); }
 .nav-btn.active, .nav-btn:hover { background: var(--surface-soft); }
+.nav-group {
+  display: grid;
+  gap: 2px;
+}
+.nav-group-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 42px;
+  padding: 10px 12px;
+  color: var(--ink);
+  font-weight: 700;
+}
+.nav-group-label span:first-child { width: 22px; text-align: center; color: var(--sage-dark); }
+.nav-group.active .nav-group-label { background: var(--surface-soft); border-radius: 8px; }
+.nav-children {
+  display: grid;
+  gap: 2px;
+  padding-left: 18px;
+}
+.nav-btn.child {
+  min-height: 36px;
+  padding: 8px 12px;
+  font-size: 14px;
+}
 .role-panel {
   margin-top: auto;
   padding: 14px;

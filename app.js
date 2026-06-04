@@ -9,19 +9,31 @@ const roles = {
 const nav = [
   ["dashboard", "⌂", "Dashboard"],
   ["mi-cuenta", "◎", "Mi cuenta"],
-  ["pedidos", "▣", "Pedidos"],
-  ["albaranes", "◇", "Albaranes"],
-  ["facturas", "□", "Facturas"],
-  ["casos", "!", "Casos e incidencias"],
+  {
+    label: "Operativa",
+    icon: "▦",
+    children: [
+      ["pedidos", "▣", "Pedidos"],
+      ["albaranes", "◇", "Albaranes"],
+      ["facturas", "□", "Facturas"],
+      ["casos", "!", "Casos e incidencias"]
+    ]
+  },
   ["formacion", "◫", "Formación"],
   ["knowledge", "◧", "Knowledge"],
   ["marketing", "◩", "Marketing"],
   ["retos", "☆", "Retos"],
   ["fidelizacion", "◈", "Fidelización"],
   ["wishlist", "♡", "Wishlist"],
-  ["compras", "◉", "Catálogo"],
-  ["compra-rapida", "⇪", "Compra rápida"],
-  ["productos-comprados", "✓", "Mis productos comprados"],
+  {
+    label: "Compras",
+    icon: "◉",
+    children: [
+      ["compras", "◉", "Catálogo"],
+      ["compra-rapida", "⇪", "Compra rápida"],
+      ["productos-comprados", "✓", "Mis productos comprados"]
+    ]
+  },
   ["admin", "⚙", "Backoffice"]
 ];
 
@@ -34,7 +46,7 @@ const data = {
     billing: "Domiciliación bancaria · ES82 **** 6128",
     shipping: ["Av. de la Ciencia 18, Valencia", "Centro logístico Norte, Paterna"],
     contacts: ["María Alameda · Titular", "Clara Vives · Compras", "Pablo Mira · Formación"],
-    email: "maria.alameda@farmaciaalameda.demo"
+    email: "mariapilar.alzuet@theetailers.com"
   },
   orders: [
     { id: "PV-2026-1482", date: "02/06/2026", status: "En preparación", total: 1268.4, lines: [["Oseogen Articular", 24, 418.8], ["Vitae Digest", 18, 299.7], ["Omega Pro", 30, 549.9]] },
@@ -259,10 +271,19 @@ function init() {
 }
 
 function renderNav() {
-  el("mainNav").innerHTML = nav.map(([key, icon, label]) => `
-    <button class="nav-btn ${state.section === key ? "active" : ""} ${allowed(key) ? "" : "locked"}" data-section="${key}">
-      <span>${icon}</span><span>${label}</span>
-    </button>`).join("");
+  el("mainNav").innerHTML = nav.map(item => {
+    if (Array.isArray(item)) return navButton(item);
+    const visibleChildren = item.children.filter(([key]) => allowed(key) || roles[state.role].sections === "all");
+    if (!visibleChildren.length) return "";
+    const groupActive = item.children.some(([key]) => state.section === key);
+    return `
+      <div class="nav-group ${groupActive ? "active" : ""}">
+        <div class="nav-group-label"><span>${item.icon}</span><span>${item.label}</span></div>
+        <div class="nav-children">
+          ${item.children.map(child => navButton(child, true)).join("")}
+        </div>
+      </div>`;
+  }).join("");
   document.querySelectorAll(".nav-btn").forEach(btn => btn.addEventListener("click", () => {
     if (!allowed(btn.dataset.section)) return;
     if (shopSectionTab(btn.dataset.section)) {
@@ -274,6 +295,13 @@ function renderNav() {
     renderNav();
     render();
   }));
+}
+
+function navButton([key, icon, label], child = false) {
+  return `
+    <button class="nav-btn ${child ? "child" : ""} ${state.section === key ? "active" : ""} ${allowed(key) ? "" : "locked"}" data-section="${key}">
+      <span>${icon}</span><span>${label}</span>
+    </button>`;
 }
 
 function render() {
@@ -738,7 +766,7 @@ function confirmationPage() {
       <div class="confirmation-hero">
         <span class="status">Pedido confirmado</span>
         <h1>${order.id}</h1>
-        <p>El pedido se ha registrado correctamente dentro de la demo. Se ha generado una confirmacion por email para ${email.to}; para enviarla fuera de la demo abre tu cliente de correo.</p>
+        <p>El pedido se ha registrado correctamente. La confirmacion se envia a ${email.to} usando la configuracion SMTP de Capataz.</p>
         <div class="actions">
           <button class="primary" data-shop-tab="catalogo">Volver al catalogo</button>
           <button class="secondary" data-shop-tab="comprados">Reponer productos</button>
@@ -756,9 +784,10 @@ function confirmationPage() {
           <h2>Correo generado</h2>
           ${kv("Para", email.to)}
           ${kv("Asunto", email.subject)}
-          ${kv("Estado", "Preparado en la demo")}
+          ${kv("Estado", email.status)}
+          ${email.error ? `<p class="status danger">${email.error}</p>` : ""}
           <div class="actions" style="margin-top:16px">
-            <a class="primary button-link" href="${emailMailtoHref(email, order)}">Abrir email</a>
+            <button class="primary" data-send-confirmation-email="${order.id}">${email.status === "Enviado" ? "Reenviar" : "Enviar ahora"}</button>
             <button class="secondary" data-download-confirmation-email="${order.id}">Descargar .eml</button>
           </div>
         </article>
@@ -784,7 +813,7 @@ function confirmationPage() {
           </div>
           ${table(["Producto","Cantidad","Subtotal"], order.lines.map(line => [line.name, String(line.qty), euro(line.subtotal)]))}
         </div>
-        <div class="email-footer">Correo transaccional de demostracion generado el ${email.createdAt}. El navegador no puede enviarlo automaticamente sin backend de correo.</div>
+        <div class="email-footer">Correo transaccional generado el ${email.createdAt}. Estado actual: ${email.status}.</div>
       </article>
     </section>`;
 }
@@ -1117,6 +1146,7 @@ function bindViewActions() {
     else modalByType("checkout");
   }));
   document.querySelectorAll("[data-download-confirmation-email]").forEach(btn => btn.addEventListener("click", () => downloadConfirmationEmail(btn.dataset.downloadConfirmationEmail)));
+  document.querySelectorAll("[data-send-confirmation-email]").forEach(btn => btn.addEventListener("click", () => sendConfirmationEmailById(btn.dataset.sendConfirmationEmail)));
   document.querySelectorAll("[data-admin-module]").forEach(btn => btn.addEventListener("click", () => {
     state.adminModule = btn.dataset.adminModule;
     state.adminSearch = "";
@@ -1951,14 +1981,85 @@ function createOrderConfirmation() {
 function createConfirmationEmail(order) {
   const email = {
     orderId: order.id,
-    to: "compras@farmaciaalameda.demo",
+    to: data.pharmacy.email,
     subject: `Confirmacion de pedido ${order.id}`,
     preheader: `Pedido ${order.id} confirmado por ${euro(order.total)}`,
     summary: `${order.units} unidades confirmadas por ${euro(order.total)}.`,
-    createdAt: new Date().toLocaleString("es-ES")
+    createdAt: new Date().toLocaleString("es-ES"),
+    status: "Pendiente de envio",
+    error: ""
   };
   state.confirmationEmails.push(email);
   return email;
+}
+
+function confirmationEmailText(email, order) {
+  const lines = order.lines.map(line => `- ${line.name}: ${line.qty} uds · ${euro(line.subtotal)}`).join("\n");
+  return `Hola ${data.pharmacy.owner},
+
+Hemos recibido el pedido ${order.id} de ${data.pharmacy.name}.
+
+Resumen:
+${lines}
+
+Total: ${euro(order.total)}
+Entrega: ${order.shipping}
+Pago: ${order.payment}
+
+Este mensaje se ha preparado desde la demo del portal Vitae.`;
+}
+
+function emailMailtoHref(email, order) {
+  return `mailto:${encodeURIComponent(email.to)}?subject=${encodeURIComponent(email.subject)}&body=${encodeURIComponent(confirmationEmailText(email, order))}`;
+}
+
+function downloadConfirmationEmail(orderId) {
+  const order = state.orderConfirmation;
+  const email = state.confirmationEmails.find(item => item.orderId === orderId);
+  if (!order || !email) return;
+  const eml = [
+    `To: ${email.to}`,
+    `Subject: ${email.subject}`,
+    "Content-Type: text/plain; charset=UTF-8",
+    "",
+    confirmationEmailText(email, order)
+  ].join("\n");
+  const blob = new Blob([eml], { type: "message/rfc822;charset=utf-8" });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = `${order.id}-confirmacion.eml`;
+  link.click();
+  URL.revokeObjectURL(link.href);
+}
+
+async function sendConfirmationEmailById(orderId) {
+  const order = state.orderConfirmation;
+  const email = state.confirmationEmails.find(item => item.orderId === orderId);
+  if (!order || !email) return;
+
+  email.status = "Enviando";
+  email.error = "";
+  renderShopWindow();
+
+  try {
+    const response = await fetch("send-order-email.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        to: email.to,
+        subject: email.subject,
+        body: confirmationEmailText(email, order)
+      })
+    });
+    const result = await response.json();
+    if (!response.ok || !result.ok) throw new Error(result.error || "No se pudo enviar");
+    email.status = "Enviado";
+  } catch (error) {
+    email.status = "Error de envio";
+    email.error = error.message;
+  }
+
+  renderShopWindow();
 }
 
 function completeCheckout() {
@@ -1974,13 +2075,14 @@ function completeCheckout() {
   }
   const order = createOrderConfirmation();
   state.orderConfirmation = order;
-  createConfirmationEmail(order);
+  const email = createConfirmationEmail(order);
   clearSharedCart();
   state.lastAdded = null;
   state.checkoutStep = "cart";
   if (isShopWindow()) {
     state.shopTab = "confirmation";
     renderShopWindow();
+    sendConfirmationEmailById(email.orderId);
     return;
   }
   openModal("Pedido finalizado", "<p>El pedido se ha completado correctamente dentro de la demo. No se ha creado ningún pedido real.</p>");
