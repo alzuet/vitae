@@ -738,7 +738,7 @@ function confirmationPage() {
       <div class="confirmation-hero">
         <span class="status">Pedido confirmado</span>
         <h1>${order.id}</h1>
-        <p>El pedido se ha registrado correctamente dentro de la demo. Se ha generado un correo de confirmacion simulado para ${email.to}.</p>
+        <p>El pedido se ha registrado correctamente dentro de la demo. Se ha generado una confirmacion por email para ${email.to}; para enviarla fuera de la demo abre tu cliente de correo.</p>
         <div class="actions">
           <button class="primary" data-shop-tab="catalogo">Volver al catalogo</button>
           <button class="secondary" data-shop-tab="comprados">Reponer productos</button>
@@ -753,10 +753,14 @@ function confirmationPage() {
           ${kv("Total", euro(order.total))}
         </article>
         <article class="panel">
-          <h2>Correo enviado</h2>
+          <h2>Correo generado</h2>
           ${kv("Para", email.to)}
           ${kv("Asunto", email.subject)}
-          ${kv("Estado", "Enviado dentro de la demo")}
+          ${kv("Estado", "Preparado en la demo")}
+          <div class="actions" style="margin-top:16px">
+            <a class="primary button-link" href="${emailMailtoHref(email, order)}">Abrir email</a>
+            <button class="secondary" data-download-confirmation-email="${order.id}">Descargar .eml</button>
+          </div>
         </article>
       </div>
       <article class="email-preview confirmation-email" aria-label="Correo de confirmacion">
@@ -780,7 +784,7 @@ function confirmationPage() {
           </div>
           ${table(["Producto","Cantidad","Subtotal"], order.lines.map(line => [line.name, String(line.qty), euro(line.subtotal)]))}
         </div>
-        <div class="email-footer">Correo transaccional de demostracion generado el ${email.createdAt}. No se ha enviado ningun mensaje real desde el navegador.</div>
+        <div class="email-footer">Correo transaccional de demostracion generado el ${email.createdAt}. El navegador no puede enviarlo automaticamente sin backend de correo.</div>
       </article>
     </section>`;
 }
@@ -1112,6 +1116,7 @@ function bindViewActions() {
     if (isShopWindow()) renderShopWindow();
     else modalByType("checkout");
   }));
+  document.querySelectorAll("[data-download-confirmation-email]").forEach(btn => btn.addEventListener("click", () => downloadConfirmationEmail(btn.dataset.downloadConfirmationEmail)));
   document.querySelectorAll("[data-admin-module]").forEach(btn => btn.addEventListener("click", () => {
     state.adminModule = btn.dataset.adminModule;
     state.adminSearch = "";
