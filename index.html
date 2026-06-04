@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Portal Vitae Clientes</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%23466f55'/%3E%3Ctext x='32' y='42' text-anchor='middle' font-family='Arial' font-size='34' font-weight='700' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">V</div>
+          <div>
+            <strong>Vitae</strong>
+            <span>Portal clientes</span>
+          </div>
+        </div>
+        <nav id="mainNav" class="main-nav" aria-label="Navegación principal"></nav>
+        <div class="role-panel">
+          <label for="roleSelect">Modo de visualización</label>
+          <select id="roleSelect"></select>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <button id="menuToggle" class="icon-btn mobile-only" aria-label="Abrir menú">☰</button>
+          <div class="search">
+            <span>⌕</span>
+            <input id="globalSearch" type="search" placeholder="Buscar pedidos, contenidos, productos..." />
+          </div>
+          <div class="top-actions">
+            <button class="icon-btn" title="Notificaciones">◌</button>
+            <button class="profile-btn">
+              <span>Farmacia Alameda</span>
+              <strong>MA</strong>
+            </button>
+          </div>
+        </header>
+
+        <section id="view" class="view" aria-live="polite"></section>
+      </main>
+    </div>
+
+    <div id="modal" class="modal" aria-hidden="true"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
