@@ -20,6 +20,7 @@ if (!is_array($payload)) {
 $to = trim((string) ($payload['to'] ?? ''));
 $subject = trim((string) ($payload['subject'] ?? ''));
 $body = trim((string) ($payload['body'] ?? ''));
+$htmlBody = trim((string) ($payload['htmlBody'] ?? ''));
 
 if (!filter_var($to, FILTER_VALIDATE_EMAIL) || $subject === '' || $body === '') {
     http_response_code(400);
@@ -33,13 +34,13 @@ try {
         '/Users/mariapilar.alzuet/Sites/capataz/apps/api/.env.local',
     ]);
     $dsn = $env['MAILER_DSN'] ?? '';
-    $fromRaw = $env['CAPATAZ_EMAIL_FROM'] ?? 'Vitae Demo <no-reply@theetailers.com>';
+    $fromRaw = $env['CAPATAZ_EMAIL_FROM'] ?? 'Dermofarma Demo <no-reply@theetailers.com>';
     if ($dsn === '') {
         throw new RuntimeException('MAILER_DSN no configurado');
     }
 
     [$fromEmail, $fromName] = parseAddress($fromRaw);
-    sendSmtp($dsn, $fromEmail, $fromName, $to, $subject, $body);
+    sendSmtp($dsn, $fromEmail, $fromName, $to, $subject, $body, $htmlBody);
     echo json_encode(['ok' => true]);
 } catch (Throwable $e) {
     http_response_code(500);
@@ -68,12 +69,12 @@ function loadEnvValues(array $files): array
 function parseAddress(string $raw): array
 {
     if (preg_match('/^(.*)<([^>]+)>$/', $raw, $matches)) {
-        return [trim($matches[2]), trim($matches[1]) ?: 'Vitae'];
+        return [trim($matches[2]), trim($matches[1]) ?: 'Dermofarma'];
     }
-    return [trim($raw), 'Vitae'];
+    return [trim($raw), 'Dermofarma'];
 }
 
-function sendSmtp(string $dsn, string $fromEmail, string $fromName, string $to, string $subject, string $body): void
+function sendSmtp(string $dsn, string $fromEmail, string $fromName, string $to, string $subject, string $body, string $htmlBody = ''): void
 {
     $parts = parse_url($dsn);
     if (!is_array($parts) || empty($parts['host'])) {
@@ -94,13 +95,13 @@ function sendSmtp(string $dsn, string $fromEmail, string $fromName, string $to, 
     stream_set_timeout($socket, 20);
 
     smtpExpect($socket, 220);
-    smtpCommand($socket, 'EHLO vitae-demo.local', 250);
+    smtpCommand($socket, 'EHLO dermofarma-demo.local', 250);
     if ($scheme !== 'smtps' && $port !== 465) {
         smtpCommand($socket, 'STARTTLS', 220);
         if (!stream_socket_enable_crypto($socket, true, STREAM_CRYPTO_METHOD_TLS_CLIENT)) {
             throw new RuntimeException('No se pudo activar TLS');
         }
-        smtpCommand($socket, 'EHLO vitae-demo.local', 250);
+        smtpCommand($socket, 'EHLO dermofarma-demo.local', 250);
     }
     if ($user !== '' || $pass !== '') {
         smtpCommand($socket, 'AUTH LOGIN', 334);
@@ -117,12 +118,43 @@ function sendSmtp(string $dsn, string $fromEmail, string $fromName, string $to, 
         'To: <' . $to . '>',
         'Subject: ' . mb_encode_mimeheader($subject, 'UTF-8'),
         'MIME-Version: 1.0',
-        'Content-Type: text/plain; charset=UTF-8',
     ];
-    fwrite($socket, implode("\r\n", $headers) . "\r\n\r\n" . str_replace("\n", "\r\n", $body) . "\r\n.\r\n");
+
+    if ($htmlBody !== '') {
+        $boundary = 'dermofarma-' . bin2hex(random_bytes(12));
+        $headers[] = 'Content-Type: multipart/alternative; boundary="' . $boundary . '"';
+        $message = implode("\r\n", [
+            '--' . $boundary,
+            'Content-Type: text/plain; charset=UTF-8',
+            'Content-Transfer-Encoding: 8bit',
+            '',
+            $body,
+            '',
+            '--' . $boundary,
+            'Content-Type: text/html; charset=UTF-8',
+            'Content-Transfer-Encoding: 8bit',
+            '',
+            $htmlBody,
+            '',
+            '--' . $boundary . '--',
+        ]);
+    } else {
+        $headers[] = 'Content-Type: text/plain; charset=UTF-8';
+        $message = $body;
+    }
+
+    fwrite($socket, implode("\r\n", $headers) . "\r\n\r\n" . smtpDataBody($message) . "\r\n.\r\n");
     smtpExpect($socket, 250);
     smtpCommand($socket, 'QUIT', 221);
     fclose($socket);
+}
+
+function smtpDataBody(string $message): string
+{
+    $normalized = str_replace(["\r\n", "\r"], "\n", $message);
+    $lines = explode("\n", $normalized);
+    $lines = array_map(static fn (string $line): string => str_starts_with($line, '.') ? '.' . $line : $line, $lines);
+    return implode("\r\n", $lines);
 }
 
 function smtpCommand($socket, string $command, int|array $expected): string

@@ -1,5 +1,5 @@
 const roles = {
-  admin: { label: "Administrador Vitae", sections: "all" },
+  admin: { label: "Administrador Dermofarma", sections: "all" },
   marketing: { label: "Marketing", sections: ["dashboard", "knowledge", "marketing", "retos", "admin"] },
   titular: { label: "Titular de farmacia", sections: "all" },
   auxiliar: { label: "Auxiliar", sections: ["dashboard", "pedidos", "albaranes", "casos", "formacion", "knowledge", "marketing", "retos", "wishlist", "compras", "compra-rapida", "productos-comprados"] },
@@ -66,63 +66,63 @@ const data = {
     { id: "ALB-2026-2110", date: "13/05/2026", order: "PV-2026-1320", status: "Entregado" }
   ],
   cases: [
-    { id: "CAS-1048", category: "Logística", product: "Omega Pro", status: "En proceso", date: "03/06/2026" },
-    { id: "CAS-1039", category: "Producto", product: "Probiovance", status: "Abierto", date: "28/05/2026" },
+    { id: "CAS-1048", category: "Logística", product: "Dermofarma Omega Balance", status: "En proceso", date: "03/06/2026" },
+    { id: "CAS-1039", category: "Producto", product: "Dermofarma Digest Balance", status: "Abierto", date: "28/05/2026" },
     { id: "CAS-1017", category: "Facturación", product: "Factura FV-2026-0798", status: "Resuelto", date: "03/05/2026" }
   ],
   products: [
-    { id: 1, name: "ImmunoVita®", cat: "Defensas", price: 17.45, stock: "Disponible", discount: "12%", image: "https://www.vitae.es/wp-content/uploads/2024/08/ImmunoVita-300x300.jpg", tagline: "Apoyo diario para campañas de defensas." },
-    { id: 2, name: "ImmunoVita® Kids", cat: "Infantil", price: 16.9, stock: "Disponible", discount: "10%", image: "https://www.vitae.es/wp-content/uploads/2024/09/ImmunoVita-Kids-300x300.jpg", tagline: "Formato infantil para recomendación familiar." },
-    { id: 3, name: "IntestVita® Enzymes", cat: "Buenas digestiones", price: 19.75, stock: "48 h", discount: "9%", image: "https://www.vitae.es/wp-content/uploads/2024/09/IntestVita-Enzymes-2-300x300.jpg", tagline: "Soporte digestivo para comidas pesadas." },
-    { id: 4, name: "RelifVita®", cat: "Buenas digestiones", price: 18.6, stock: "Disponible", discount: "11%", image: "https://www.vitae.es/wp-content/uploads/2025/02/Relif-300x300.jpg", tagline: "Solución de mostrador para digestiones sensibles." },
-    { id: 5, name: "IntestVita® Transit", cat: "Buenas digestiones", price: 17.95, stock: "Disponible", discount: "8%", image: "https://www.vitae.es/wp-content/uploads/2024/08/IntestVita-Transit-300x300.jpg", tagline: "Rutina digestiva para tránsito intestinal." },
-    { id: 6, name: "IntestVita® Kids", cat: "Infantil", price: 16.3, stock: "Disponible", discount: "8%", image: "https://www.vitae.es/wp-content/uploads/2024/09/IntestVita-kids-300x300.jpg", tagline: "Cuidado digestivo para niños." },
-    { id: 7, name: "Reconnect®", cat: "Energía", price: 21.4, stock: "Disponible", discount: "13%", image: "https://www.vitae.es/wp-content/uploads/2024/07/Reconnect-1-300x300.jpg", tagline: "Energía y foco para picos de demanda." },
-    { id: 8, name: "OlioVita® Protect, protector solar oral", cat: "Piel y mucosas", price: 22.8, stock: "Disponible", discount: "15%", image: "https://www.vitae.es/wp-content/uploads/2024/09/OlioVita-Protect-5-300x300.jpg", tagline: "Campaña solar con protección desde dentro." },
-    { id: 9, name: "UrinVita®", cat: "Sistema urinario", price: 18.25, stock: "48 h", discount: "7%", image: "https://www.vitae.es/wp-content/uploads/2024/08/UrinVita-300x300.jpg", tagline: "Reposición rápida para bienestar urinario." },
-    { id: 10, name: "Vitalivio®", cat: "Contracturas y salud articular", price: 20.5, stock: "Disponible", discount: "12%", image: "https://www.vitae.es/wp-content/uploads/2024/09/Vitalivio-3-300x300.jpg", tagline: "Referencia para molestias y movilidad." },
-    { id: 11, name: "Vitatuss®", cat: "Defensas", price: 14.7, stock: "Disponible", discount: "6%", image: "https://www.vitae.es/wp-content/uploads/2024/09/Vitatuss_jarabe-300x300.jpg", tagline: "Apoyo estacional para el lineal de invierno." },
-    { id: 12, name: "Equazen® Omega 3 y 6", cat: "Corazón", price: 18.33, stock: "Disponible", discount: "15%", image: "https://www.vitae.es/wp-content/uploads/2024/09/equazen-1-300x300.jpg", tagline: "Omega 3 y 6 para recomendación familiar." },
-    { id: 13, name: "Vibracell®", cat: "Energía", price: 19.9, stock: "Disponible", discount: "9%", image: "https://www.vitae.es/wp-content/uploads/2024/08/Vibracell-300x300.jpg", tagline: "Formato líquido para energía diaria." },
-    { id: 14, name: "BucoVitae® alivio aftas bucales", cat: "Piel y mucosas", price: 13.95, stock: "Disponible", discount: "5%", image: "https://www.vitae.es/wp-content/uploads/2024/08/BucoVitae-300x300.webp", tagline: "Solución oral de alta rotación." },
-    { id: 15, name: "EnergyVita® Multivitamínico Concentrado", cat: "Energía", price: 20.9, stock: "Disponible", discount: "12%", image: "https://www.vitae.es/wp-content/uploads/2025/02/energyvita-300x300.jpg", tagline: "Multivitamínico para campañas de vitalidad." },
-    { id: 16, name: "Nubiocell®", cat: "Energía", price: 23.2, stock: "48 h", discount: "8%", image: "https://www.vitae.es/wp-content/uploads/2024/09/nubiocell-300x300.jpg", tagline: "Fórmula premium para recomendación avanzada." },
-    { id: 17, name: "Sikapur® med Herpes Labial", cat: "Piel y mucosas", price: 12.6, stock: "Disponible", discount: "5%", image: "https://www.vitae.es/wp-content/uploads/2024/09/Sikapur-m-300x300.jpg", tagline: "Producto específico para el mostrador." },
-    { id: 18, name: "Bi·Bran® suplemento inmunomodulador", cat: "Defensas", price: 25.8, stock: "Disponible", discount: "10%", image: "https://www.vitae.es/wp-content/uploads/2024/09/Bibran-300x300.jpg", tagline: "Defensas con posicionamiento especialista." },
-    { id: 19, name: "Magnesium6® seis sales de Magnesio", cat: "Contracturas y salud articular", price: 16.58, stock: "Disponible", discount: "8%", image: "https://www.vitae.es/wp-content/uploads/2024/09/Magnesium6-300x300.jpg", tagline: "Magnesio para recomendación transversal." },
-    { id: 20, name: "MagVita® Q10", cat: "Energía", price: 21.75, stock: "Disponible", discount: "10%", image: "https://www.vitae.es/wp-content/uploads/2025/01/magvita-300x300.jpg", tagline: "Energía y coenzima Q10 en reposición." },
-    { id: 21, name: "FlexiVita® Pro", cat: "Contracturas y salud articular", price: 20.4, stock: "Disponible", discount: "10%", image: "https://www.vitae.es/wp-content/uploads/2024/09/Flexivita-pro-300x300.jpg", tagline: "Cuidado articular para clientes activos." },
-    { id: 22, name: "CalmTu®", cat: "Estrés y ansiedad", price: 16.2, stock: "Disponible", discount: "7%", image: "https://www.vitae.es/wp-content/uploads/2024/08/CalmTu-300x300.webp", tagline: "Apoyo en rutinas de calma diaria." },
-    { id: 23, name: "Vitalivio® Cream crema antiinflamatoria", cat: "Contracturas y salud articular", price: 15.95, stock: "Disponible", discount: "6%", image: "https://www.vitae.es/wp-content/uploads/2024/09/VitalivioCream-300x300.jpg", tagline: "Formato tópico para completar recomendación." },
-    { id: 24, name: "CalmTu® Night Retard", cat: "Insomnio", price: 17.4, stock: "Últimas unidades", discount: "6%", image: "https://www.vitae.es/wp-content/uploads/2024/09/CalmTuNight-Retard-300x300.jpg", tagline: "Descanso nocturno con reposición sencilla." },
-    { id: 25, name: "Chlorella®", cat: "Detox", price: 18.7, stock: "Disponible", discount: "8%", image: "https://www.vitae.es/wp-content/uploads/2024/09/Chlorella-300x300.jpg", tagline: "Alga verde para campañas detox." },
-    { id: 26, name: "Chlorella® Plus", cat: "Detox", price: 20.1, stock: "Disponible", discount: "9%", image: "https://www.vitae.es/wp-content/uploads/2024/08/Chlorella-plus-300x300.jpg", tagline: "Formato plus para recomendación avanzada." },
-    { id: 27, name: "FlexiVita® Cream", cat: "Contracturas y salud articular", price: 15.8, stock: "Disponible", discount: "6%", image: "https://www.vitae.es/wp-content/uploads/2024/09/FlexiVita-Cream-300x300.jpg", tagline: "Complemento tópico para movilidad." },
-    { id: 28, name: "Calcium6®", cat: "Contracturas y salud articular", price: 17.2, stock: "48 h", discount: "7%", image: "https://www.vitae.es/wp-content/uploads/2024/09/Calcium6-300x300.jpg", tagline: "Minerales para salud ósea y muscular." },
-    { id: 29, name: "Ferrum6", cat: "Energía", price: 16.85, stock: "Disponible", discount: "7%", image: "https://www.vitae.es/wp-content/uploads/2024/09/Ferrum6-300x300.jpg", tagline: "Hierro para rutinas de energía." },
-    { id: 30, name: "IntestVita® one per day", cat: "Buenas digestiones", price: 19.2, stock: "Disponible", discount: "9%", image: "https://www.vitae.es/wp-content/uploads/2024/09/IntestVita-one-per-day-2-300x300.webp", tagline: "Digestivo diario en formato simple." },
-    { id: 31, name: "OlioVita® aceite de espino amarillo", cat: "Antioxidantes", price: 21.6, stock: "Disponible", discount: "12%", image: "https://www.vitae.es/wp-content/uploads/2024/08/OlioVita-01-300x300.webp", tagline: "Espino amarillo para cuidado integral." },
-    { id: 32, name: "OlioVita® Radiance", cat: "Piel y mucosas", price: 22.1, stock: "Disponible", discount: "12%", image: "https://www.vitae.es/wp-content/uploads/2025/08/radiance-300x300.jpg", tagline: "Cuidado luminoso para campañas de piel." },
-    { id: 33, name: "OlioVita® Vision", cat: "Antioxidantes", price: 23.6, stock: "48 h", discount: "10%", image: "https://www.vitae.es/wp-content/uploads/2026/02/Oliovita-Vision-Render-300x300.jpg", tagline: "Nueva referencia visual para salud ocular." },
-    { id: 34, name: "PowerVita®", cat: "Energía", price: 21.2, stock: "Disponible", discount: "9%", image: "https://www.vitae.es/wp-content/uploads/2026/03/powerVita-300x300.jpg", tagline: "Impulso diario para clientes activos." },
-    { id: 35, name: "OlioVita® Repair", cat: "Piel y mucosas", price: 20.7, stock: "Disponible", discount: "10%", image: "https://www.vitae.es/wp-content/uploads/2024/09/OlioVita-Repair-300x300.jpg", tagline: "Piel y mucosas en recomendación continuada." },
-    { id: 36, name: "OlioVita® Íntima", cat: "Piel y mucosas", price: 19.85, stock: "Disponible", discount: "9%", image: "https://www.vitae.es/wp-content/uploads/2024/08/Oliovita-intima-300x300.webp", tagline: "Cuidado íntimo dentro de la familia OlioVita." },
-    { id: 37, name: "OlioVita® Balm", cat: "Piel y mucosas", price: 11.9, stock: "Disponible", discount: "5%", image: "https://www.vitae.es/wp-content/uploads/2024/09/OlioVita-balm-300x300.jpg", tagline: "Formato balm para venta cruzada." },
-    { id: 38, name: "OlioVita® Balm Protect", cat: "Piel y mucosas", price: 12.4, stock: "Disponible", discount: "5%", image: "https://www.vitae.es/wp-content/uploads/2024/09/OlioVita-Balm-protect-300x300.jpg", tagline: "Protección diaria para labios y piel." },
-    { id: 39, name: "OlioVita® Gastro", cat: "Buenas digestiones", price: 20.3, stock: "Disponible", discount: "8%", image: "https://www.vitae.es/wp-content/uploads/2024/09/OlioVitaGastro-2-300x300.webp", tagline: "OlioVita orientado a bienestar digestivo." },
-    { id: 40, name: "Sikapur® med Gastro", cat: "Buenas digestiones", price: 13.8, stock: "Disponible", discount: "5%", image: "https://www.vitae.es/wp-content/uploads/2024/09/Sikapur-300x300.jpg", tagline: "Producto específico para molestias gástricas." },
-    { id: 41, name: "VitaminD3K2", cat: "Defensas", price: 17.75, stock: "Disponible", discount: "7%", image: "https://www.vitae.es/wp-content/uploads/2024/09/VitaminD1k2-300x300.jpg", tagline: "Vitamina D3 y K2 para recomendación anual." },
-    { id: 42, name: "Vitarlic® Cleanse", cat: "Detox", price: 18.95, stock: "Disponible", discount: "8%", image: "https://www.vitae.es/wp-content/uploads/2024/08/Vitarlic-Clease-300x300.jpg", tagline: "Línea Vitarlic para planes cleanse." },
-    { id: 43, name: "Vitarlic® Forte", cat: "Corazón", price: 19.45, stock: "Disponible", discount: "8%", image: "https://www.vitae.es/wp-content/uploads/2024/09/Vitarlic-forte-300x300.jpg", tagline: "Ajo negro para recomendación cardiovascular." },
-    { id: 44, name: "Vulbiotic®", cat: "Sistema urinario", price: 18.5, stock: "48 h", discount: "7%", image: "https://www.vitae.es/wp-content/uploads/2024/09/VulBiotic-5-300x300.webp", tagline: "Bienestar íntimo y urinario para reposición." }
+    { id: 1, name: "Dermofarma Inmuno Forte", cat: "Defensas", price: 17.45, stock: "Disponible", discount: "12%", image: "", tagline: "Referencia demo de defensas para reposición B2B." },
+    { id: 2, name: "Dermofarma Junior Defensas", cat: "Infantil", price: 16.9, stock: "Disponible", discount: "10%", image: "", tagline: "Referencia demo de infantil para reposición B2B." },
+    { id: 3, name: "Dermofarma Digest Balance", cat: "Buenas digestiones", price: 19.75, stock: "48 h", discount: "9%", image: "", tagline: "Referencia demo de buenas digestiones para reposición B2B." },
+    { id: 4, name: "Dermofarma Digest Enzymes", cat: "Buenas digestiones", price: 18.6, stock: "Disponible", discount: "11%", image: "", tagline: "Referencia demo de buenas digestiones para reposición B2B." },
+    { id: 5, name: "Dermofarma Transit Forte", cat: "Buenas digestiones", price: 17.95, stock: "Disponible", discount: "8%", image: "", tagline: "Referencia demo de buenas digestiones para reposición B2B." },
+    { id: 6, name: "Dermofarma Junior Digest", cat: "Infantil", price: 16.3, stock: "Disponible", discount: "8%", image: "", tagline: "Referencia demo de infantil para reposición B2B." },
+    { id: 7, name: "Dermofarma Energy Complex", cat: "Energía", price: 21.4, stock: "Disponible", discount: "13%", image: "", tagline: "Referencia demo de energía para reposición B2B." },
+    { id: 8, name: "Dermofarma Dermal Protect", cat: "Piel y mucosas", price: 22.8, stock: "Disponible", discount: "15%", image: "", tagline: "Referencia demo de piel y mucosas para reposición B2B." },
+    { id: 9, name: "Dermofarma Uro Balance", cat: "Sistema urinario", price: 18.25, stock: "48 h", discount: "7%", image: "", tagline: "Referencia demo de sistema urinario para reposición B2B." },
+    { id: 10, name: "Dermofarma Articular Pro", cat: "Contracturas y salud articular", price: 20.5, stock: "Disponible", discount: "12%", image: "", tagline: "Referencia demo de contracturas y salud articular para reposición B2B." },
+    { id: 11, name: "Dermofarma Vitamina C Complex", cat: "Defensas", price: 14.7, stock: "Disponible", discount: "6%", image: "", tagline: "Referencia demo de defensas para reposición B2B." },
+    { id: 12, name: "Dermofarma Omega Balance", cat: "Corazón", price: 18.33, stock: "Disponible", discount: "15%", image: "", tagline: "Referencia demo de corazón para reposición B2B." },
+    { id: 13, name: "Dermofarma Vitalidad Q10", cat: "Energía", price: 19.9, stock: "Disponible", discount: "9%", image: "", tagline: "Referencia demo de energía para reposición B2B." },
+    { id: 14, name: "Dermofarma Mucosa Care", cat: "Piel y mucosas", price: 13.95, stock: "Disponible", discount: "5%", image: "", tagline: "Referencia demo de piel y mucosas para reposición B2B." },
+    { id: 15, name: "Dermofarma Hierro Plus", cat: "Energía", price: 20.9, stock: "Disponible", discount: "12%", image: "", tagline: "Referencia demo de energía para reposición B2B." },
+    { id: 16, name: "Dermofarma Multi Energy", cat: "Energía", price: 23.2, stock: "48 h", discount: "8%", image: "", tagline: "Referencia demo de energía para reposición B2B." },
+    { id: 17, name: "Dermofarma Balm Repair", cat: "Piel y mucosas", price: 12.6, stock: "Disponible", discount: "5%", image: "", tagline: "Referencia demo de piel y mucosas para reposición B2B." },
+    { id: 18, name: "Dermofarma Defensa Plus", cat: "Defensas", price: 25.8, stock: "Disponible", discount: "10%", image: "", tagline: "Referencia demo de defensas para reposición B2B." },
+    { id: 19, name: "Dermofarma Magnesio Complex", cat: "Contracturas y salud articular", price: 16.58, stock: "Disponible", discount: "8%", image: "", tagline: "Referencia demo de contracturas y salud articular para reposición B2B." },
+    { id: 20, name: "Dermofarma Power Day", cat: "Energía", price: 21.75, stock: "Disponible", discount: "10%", image: "", tagline: "Referencia demo de energía para reposición B2B." },
+    { id: 21, name: "Dermofarma Joint Cream", cat: "Contracturas y salud articular", price: 20.4, stock: "Disponible", discount: "10%", image: "", tagline: "Referencia demo de contracturas y salud articular para reposición B2B." },
+    { id: 22, name: "Dermofarma Calma Día", cat: "Estrés y ansiedad", price: 16.2, stock: "Disponible", discount: "7%", image: "", tagline: "Referencia demo de estrés y ansiedad para reposición B2B." },
+    { id: 23, name: "Dermofarma Flex Cream", cat: "Contracturas y salud articular", price: 15.95, stock: "Disponible", discount: "6%", image: "", tagline: "Referencia demo de contracturas y salud articular para reposición B2B." },
+    { id: 24, name: "Dermofarma Noche Retard", cat: "Insomnio", price: 17.4, stock: "Últimas unidades", discount: "6%", image: "", tagline: "Referencia demo de insomnio para reposición B2B." },
+    { id: 25, name: "Dermofarma Green Detox", cat: "Detox", price: 18.7, stock: "Disponible", discount: "8%", image: "", tagline: "Referencia demo de detox para reposición B2B." },
+    { id: 26, name: "Dermofarma Detox Plus", cat: "Detox", price: 20.1, stock: "Disponible", discount: "9%", image: "", tagline: "Referencia demo de detox para reposición B2B." },
+    { id: 27, name: "Dermofarma Calcio Plus", cat: "Contracturas y salud articular", price: 15.8, stock: "Disponible", discount: "6%", image: "", tagline: "Referencia demo de contracturas y salud articular para reposición B2B." },
+    { id: 28, name: "Dermofarma Movilidad Forte", cat: "Contracturas y salud articular", price: 17.2, stock: "48 h", discount: "7%", image: "", tagline: "Referencia demo de contracturas y salud articular para reposición B2B." },
+    { id: 29, name: "Dermofarma Cell Energy", cat: "Energía", price: 16.85, stock: "Disponible", discount: "7%", image: "", tagline: "Referencia demo de energía para reposición B2B." },
+    { id: 30, name: "Dermofarma Daily Digest", cat: "Buenas digestiones", price: 19.2, stock: "Disponible", discount: "9%", image: "", tagline: "Referencia demo de buenas digestiones para reposición B2B." },
+    { id: 31, name: "Dermofarma Antiox Oil", cat: "Antioxidantes", price: 21.6, stock: "Disponible", discount: "12%", image: "", tagline: "Referencia demo de antioxidantes para reposición B2B." },
+    { id: 32, name: "Dermofarma Balm Protect", cat: "Piel y mucosas", price: 22.1, stock: "Disponible", discount: "12%", image: "", tagline: "Referencia demo de piel y mucosas para reposición B2B." },
+    { id: 33, name: "Dermofarma Vision Care", cat: "Antioxidantes", price: 23.6, stock: "48 h", discount: "10%", image: "", tagline: "Referencia demo de antioxidantes para reposición B2B." },
+    { id: 34, name: "Dermofarma Active Focus", cat: "Energía", price: 21.2, stock: "Disponible", discount: "9%", image: "", tagline: "Referencia demo de energía para reposición B2B." },
+    { id: 35, name: "Dermofarma Skin Repair", cat: "Piel y mucosas", price: 20.7, stock: "Disponible", discount: "10%", image: "", tagline: "Referencia demo de piel y mucosas para reposición B2B." },
+    { id: 36, name: "Dermofarma Skin Radiance", cat: "Piel y mucosas", price: 19.85, stock: "Disponible", discount: "9%", image: "", tagline: "Referencia demo de piel y mucosas para reposición B2B." },
+    { id: 37, name: "Dermofarma Lip Balm", cat: "Piel y mucosas", price: 11.9, stock: "Disponible", discount: "5%", image: "", tagline: "Referencia demo de piel y mucosas para reposición B2B." },
+    { id: 38, name: "Dermofarma Lip Protect", cat: "Piel y mucosas", price: 12.4, stock: "Disponible", discount: "5%", image: "", tagline: "Referencia demo de piel y mucosas para reposición B2B." },
+    { id: 39, name: "Dermofarma Gastro Calm", cat: "Buenas digestiones", price: 20.3, stock: "Disponible", discount: "8%", image: "", tagline: "Referencia demo de buenas digestiones para reposición B2B." },
+    { id: 40, name: "Dermofarma Gastro Relief", cat: "Buenas digestiones", price: 13.8, stock: "Disponible", discount: "5%", image: "", tagline: "Referencia demo de buenas digestiones para reposición B2B." },
+    { id: 41, name: "Dermofarma D3 K2 Balance", cat: "Defensas", price: 17.75, stock: "Disponible", discount: "7%", image: "", tagline: "Referencia demo de defensas para reposición B2B." },
+    { id: 42, name: "Dermofarma Cleanse Forte", cat: "Detox", price: 18.95, stock: "Disponible", discount: "8%", image: "", tagline: "Referencia demo de detox para reposición B2B." },
+    { id: 43, name: "Dermofarma Cardio Forte", cat: "Corazón", price: 19.45, stock: "Disponible", discount: "8%", image: "", tagline: "Referencia demo de corazón para reposición B2B." },
+    { id: 44, name: "Dermofarma Uro Flora", cat: "Sistema urinario", price: 18.5, stock: "48 h", discount: "7%", image: "", tagline: "Referencia demo de sistema urinario para reposición B2B." }
   ],
   learning: [
-    { title: "Ficha técnica Oseogen", type: "Ficha técnica", family: "Articulaciones", state: "Completada", progress: 100 },
-    { title: "Estudio clínico Omega Pro", type: "Estudio", family: "Cardiovascular", state: "En curso", progress: 54 },
-    { title: "Cápsula formativa Probiovance", type: "Vídeo", family: "Digestivo", state: "No iniciada", progress: 0 },
+    { title: "Ficha técnica Articular Pro", type: "Ficha técnica", family: "Articulaciones", state: "Completada", progress: 100 },
+    { title: "Estudio clínico Dermofarma Omega Balance", type: "Estudio", family: "Cardiovascular", state: "En curso", progress: 54 },
+    { title: "Cápsula formativa Dermofarma Digest Balance", type: "Vídeo", family: "Digestivo", state: "No iniciada", progress: 0 },
     { title: "Presentación de recomendación activa", type: "Presentación", family: "Mostrador", state: "En curso", progress: 32 },
-    { title: "Ficha técnica Magnesio Plus", type: "Ficha técnica", family: "Energía", state: "Disponible", progress: 0 },
-    { title: "Ficha técnica Inmuno Complex", type: "Ficha técnica", family: "Defensas", state: "Disponible", progress: 0 },
+    { title: "Ficha técnica Dermofarma Magnesio Complex", type: "Ficha técnica", family: "Energía", state: "Disponible", progress: 0 },
+    { title: "Ficha técnica Dermofarma Defensa Plus", type: "Ficha técnica", family: "Defensas", state: "Disponible", progress: 0 },
     { title: "Estudio microbiota y bienestar", type: "Estudio", family: "Digestivo", state: "No iniciada", progress: 0 },
     { title: "Estudio descanso y rutina nocturna", type: "Estudio", family: "Bienestar", state: "En curso", progress: 41 },
     { title: "Vídeo consejo cardiovascular", type: "Vídeo", family: "Cardiovascular", state: "Disponible", progress: 0 },
@@ -145,18 +145,18 @@ const data = {
     { title: "Estudio: hábitos digestivos en farmacia", type: "Estudio", tag: "Digestivo" }
   ],
   campaigns: [
-    { title: "Campaña Primavera Activa", type: "Creatividades", product: "Magnesio Plus" },
-    { title: "Escaparate Digestivo", type: "Imágenes", product: "Probiovance" },
-    { title: "Vídeo consejo Sueño Natural", type: "Vídeo", product: "Sueño Natural" },
-    { title: "Material mostrador Defensas", type: "Promocional", product: "Inmuno Complex" },
-    { title: "Creatividades Omega Pro verano", type: "Creatividades", product: "Omega Pro" },
-    { title: "Creatividades descanso nocturno", type: "Creatividades", product: "Sueño Natural" },
-    { title: "Pack imágenes articulaciones", type: "Imágenes", product: "Oseogen Articular" },
-    { title: "Imágenes redes defensas", type: "Imágenes", product: "Inmuno Complex" },
-    { title: "Vídeo escaparate digestivo", type: "Vídeo", product: "Probiovance" },
-    { title: "Vídeo microconsejo energía", type: "Vídeo", product: "Magnesio Plus" },
-    { title: "Promocional expositor Omega", type: "Promocional", product: "Omega Pro" },
-    { title: "Promocional guía articular", type: "Promocional", product: "Oseogen Articular" }
+    { title: "Campaña Primavera Activa", type: "Creatividades", product: "Dermofarma Magnesio Complex" },
+    { title: "Escaparate Digestivo", type: "Imágenes", product: "Dermofarma Digest Balance" },
+    { title: "Vídeo consejo Dermofarma Noche Retard", type: "Vídeo", product: "Dermofarma Noche Retard" },
+    { title: "Material mostrador Defensas", type: "Promocional", product: "Dermofarma Defensa Plus" },
+    { title: "Creatividades Dermofarma Omega Balance verano", type: "Creatividades", product: "Dermofarma Omega Balance" },
+    { title: "Creatividades descanso nocturno", type: "Creatividades", product: "Dermofarma Noche Retard" },
+    { title: "Pack imágenes articulaciones", type: "Imágenes", product: "Dermofarma Articular Pro" },
+    { title: "Imágenes redes defensas", type: "Imágenes", product: "Dermofarma Defensa Plus" },
+    { title: "Vídeo escaparate digestivo", type: "Vídeo", product: "Dermofarma Digest Balance" },
+    { title: "Vídeo microconsejo energía", type: "Vídeo", product: "Dermofarma Magnesio Complex" },
+    { title: "Promocional expositor cardio", type: "Promocional", product: "Dermofarma Omega Balance" },
+    { title: "Promocional guía articular", type: "Promocional", product: "Dermofarma Articular Pro" }
   ],
   challenges: [
     {
@@ -171,10 +171,10 @@ const data = {
       goal: "Crear un escaparate visible con el producto recomendado, subir una foto y registrar una acción de consejo vinculada.",
       steps: ["Descargar creatividad", "Montar exposición", "Subir fotografía", "Registrar acción en mostrador"],
       requirement: "1 foto del escaparate y 3 recomendaciones registradas",
-      validation: "Revisión por el equipo Vitae en 48 h"
+      validation: "Revisión por el equipo Dermofarma en 48 h"
     },
     {
-      title: "Semana Digestiva Probiovance",
+      title: "Semana Digestiva Dermofarma Digest Balance",
       state: "Disponible",
       reward: "350 puntos",
       deadline: "24/06/2026",
@@ -182,13 +182,13 @@ const data = {
       duration: "10 dias",
       participants: 29,
       progress: 0,
-      goal: "Activar una semana de consejo digestivo con material de mostrador, argumentario breve y registro de recomendaciones de Probiovance.",
+      goal: "Activar una semana de consejo digestivo con material de mostrador, argumentario breve y registro de recomendaciones de Dermofarma Digest Balance.",
       steps: ["Descargar argumentario", "Colocar material de mostrador", "Registrar recomendaciones", "Subir resumen semanal"],
       requirement: "6 recomendaciones registradas y 1 resumen de actividad",
       validation: "Revisión por marketing y delegado comercial"
     },
     {
-      title: "Sprint Omega Pro mostrador",
+      title: "Sprint Dermofarma Omega Balance mostrador",
       state: "Disponible",
       reward: "500 puntos",
       deadline: "28/06/2026",
@@ -196,7 +196,7 @@ const data = {
       duration: "12 dias",
       participants: 21,
       progress: 0,
-      goal: "Impulsar la recomendacion activa de Omega Pro en clientes interesados en bienestar cardiovascular y adherencia a rutinas saludables.",
+      goal: "Impulsar la recomendacion activa de Dermofarma Omega Balance en clientes interesados en bienestar cardiovascular y adherencia a rutinas saludables.",
       steps: ["Completar ficha rapida", "Preparar guion de consejo", "Registrar 5 conversaciones", "Enviar evidencia final"],
       requirement: "5 conversaciones documentadas y test de producto completado",
       validation: "Validación automática más revisión muestral"
@@ -210,7 +210,7 @@ const data = {
       duration: "14 dias",
       participants: 18,
       progress: 0,
-      goal: "Crear una acción de recomendación sobre descanso con Sueño Natural, enfocada en rutina nocturna, continuidad y seguimiento del cliente.",
+      goal: "Crear una acción de recomendación sobre descanso con Dermofarma Noche Retard, enfocada en rutina nocturna, continuidad y seguimiento del cliente.",
       steps: ["Revisar guía de descanso", "Crear exposición mini", "Registrar casos de consejo", "Completar cierre del reto"],
       requirement: "4 casos de consejo y foto de exposición mini",
       validation: "Revisión manual en 72 h"
@@ -238,7 +238,7 @@ const data = {
       duration: "7 dias",
       participants: 17,
       progress: 84,
-      goal: "Registrar recomendaciones reales de Oseogen Articular y adjuntar el resumen de casos atendidos durante la semana.",
+      goal: "Registrar recomendaciones reales de Dermofarma Articular Pro y adjuntar el resumen de casos atendidos durante la semana.",
       steps: ["Revisar argumentario", "Registrar consejos", "Adjuntar resumen", "Esperar validacion"],
       requirement: "5 consejos activos documentados",
       validation: "Revisión manual del delegado asignado"
@@ -286,7 +286,7 @@ const euro = value => value.toLocaleString("es-ES", { style: "currency", currenc
 const el = id => document.getElementById(id);
 const statusClass = status => /pendiente|proceso|tránsito|curso|validación/i.test(status) ? "warn" : /abierto|últimas/i.test(status) ? "danger" : /no iniciada|48/i.test(status) ? "info" : "";
 const allowed = key => roles[state.role].sections === "all" || roles[state.role].sections.includes(key);
-const cartStorageKey = "vitae-shop-cart";
+const cartStorageKey = "dermofarma-shop-cart";
 
 function init() {
   if (new URLSearchParams(window.location.search).get("shop") === "1") {
@@ -401,7 +401,7 @@ function dashboard() {
     </div>
     <div class="grid cols-3" style="margin-top:18px">
       ${card("Noticia destacada", "Nuevo estudio sobre suplementación en bienestar digestivo disponible en Knowledge.", "Leer contenido", "knowledge")}
-      ${card("Acción recomendada", "Completa la cápsula de Probiovance para activar recomendaciones en mostrador.", "Ir a formación", "formacion")}
+      ${card("Acción recomendada", "Completa la cápsula de Dermofarma Digest Balance para activar recomendaciones en mostrador.", "Ir a formación", "formacion")}
       ${card("Estado de formación", "3 de 5 miembros del equipo han completado el plan del trimestre.", "Ver detalle", "formacion")}
     </div>`;
 }
@@ -638,7 +638,7 @@ function wishlist() {
 function shopEntry() {
   return page("Tienda online", "La tienda se abre en una ventana independiente con navegación y checkout propios.", `
     <div class="panel shop-entry">
-      <h2>Tienda Vitae B2B</h2>
+      <h2>Tienda Dermofarma B2B</h2>
       <p class="muted">Abre el proceso de compra simulado con header de tienda, categorías, catálogo, compra rápida por CSV y productos comprados.</p>
       <button class="primary" onclick="openShopWindow()">Abrir tienda</button>
     </div>`);
@@ -660,16 +660,17 @@ function productCard(p) {
   const inputId = `qty-${p.id}`;
   const wasAdded = state.lastAdded?.id === p.id;
   const image = productImage(p);
-  return `<article class="card product-card searchable filterable ${wasAdded ? "just-added" : ""}" data-filter-value="${p.cat}">
+  const accent = productAccent(p);
+  return `<article class="card product-card searchable filterable ${wasAdded ? "just-added" : ""}" data-filter-value="${p.cat}" style="--product-accent:${accent[0]};--product-soft:${accent[1]};">
     <div class="product-art">
+      <span class="product-sku">DF-${String(p.id).padStart(3, "0")}</span>
       <span class="product-badge">-${p.discount}</span>
-      ${image ? `<img src="${image}" alt="${p.name}" loading="lazy">` : `<div class="product-box">V</div>`}
-      <span class="product-source">Vitae</span>
+      ${image ? `<img src="${image}" alt="${p.name}" loading="lazy">` : productPackshot(p)}
     </div>
     <div class="product-body">
       <div class="product-meta">
-        <span class="status ${statusClass(p.stock)}">${p.stock}</span>
-        <span class="status info">${p.cat}</span>
+        <span>${p.cat}</span>
+        <strong class="${statusClass(p.stock)}">${p.stock}</strong>
       </div>
       <h3>${p.name}</h3>
       <p class="product-tagline">${p.tagline || p.cat}</p>
@@ -683,19 +684,63 @@ function productCard(p) {
 }
 
 function productImage(p) {
-  const webpIds = new Set([14, 22, 30, 31, 36, 39, 44]);
-  const ext = webpIds.has(p.id) ? "webp" : "jpg";
-  return `assets/products/vit-${String(p.id).padStart(3, "0")}.${ext}`;
+  return p.image || "";
+}
+
+function productPackshot(p) {
+  const shortName = p.name.replace(/^Dermofarma\s+/i, "");
+  return `<div class="product-box" aria-label="Envase demo de ${p.name}">
+    <span class="pack-brand">Dermofarma</span>
+    <strong>${shortName}</strong>
+    <small>${p.cat}</small>
+    <em>${productIcon(p.cat)}</em>
+  </div>`;
+}
+
+function productAccent(p) {
+  const palette = {
+    "Defensas": ["#2f7d63", "#e5f4ed"],
+    "Infantil": ["#b46a35", "#fff0df"],
+    "Buenas digestiones": ["#4f7f94", "#e8f3f7"],
+    "Energía": ["#8a6a2f", "#fff4d8"],
+    "Piel y mucosas": ["#9b5c75", "#f9e9ef"],
+    "Sistema urinario": ["#456fa5", "#e8f0fb"],
+    "Contracturas y salud articular": ["#5f6f3c", "#edf3df"],
+    "Corazón": ["#9b4d49", "#fae9e6"],
+    "Estrés y ansiedad": ["#6b5b95", "#eee9f8"],
+    "Insomnio": ["#42507e", "#e8ecf8"],
+    "Detox": ["#4e7f4f", "#e8f3e9"],
+    "Antioxidantes": ["#6f5c2d", "#f5efd9"]
+  };
+  return palette[p.cat] || ["#466f55", "#eef5ec"];
+}
+
+function productIcon(cat) {
+  const icons = {
+    "Defensas": "✚",
+    "Infantil": "◌",
+    "Buenas digestiones": "≈",
+    "Energía": "↗",
+    "Piel y mucosas": "◆",
+    "Sistema urinario": "◇",
+    "Contracturas y salud articular": "◎",
+    "Corazón": "♡",
+    "Estrés y ansiedad": "☾",
+    "Insomnio": "◐",
+    "Detox": "✦",
+    "Antioxidantes": "◈"
+  };
+  return icons[cat] || "◆";
 }
 
 function renderShopWindow() {
-  document.title = "Tienda Vitae B2B";
+  document.title = "Tienda Dermofarma B2B";
   document.body.innerHTML = `
     <div class="shop-shell">
       <header class="shop-header">
         <div class="shop-brand">
           <div class="brand-mark">V</div>
-          <div><strong>Tienda Vitae</strong><span>Compra B2B demo</span></div>
+          <div><strong>Tienda Dermofarma</strong><span>Compra B2B demo</span></div>
         </div>
         <nav class="shop-tabs" aria-label="Secciones de tienda">
           ${shopTabButton("catalogo", "Catálogo")}
@@ -734,7 +779,7 @@ function shopCatalog() {
     <section class="shop-hero">
       <div>
         <span class="status">Farmacia Alameda</span>
-        <h1>Proceso de compra Vitae</h1>
+        <h1>Proceso de compra Dermofarma</h1>
         <p>Catálogo B2B con tarifas, disponibilidad y checkout simulado para crear un pedido de reposición.</p>
       </div>
       <div class="shop-summary">
@@ -762,11 +807,11 @@ function quickPurchase() {
       </form>
       <div class="csv-sample">
         <strong>Formato esperado</strong>
-        <code>sku,producto,cantidad<br>VIT-001,Oseogen Articular,12<br>VIT-002,Omega Pro,6</code>
+        <code>sku,producto,cantidad<br>DF-001,Dermofarma Inmuno Forte,12<br>DF-002,Dermofarma Junior Defensas,6</code>
         <button class="secondary" data-add-sample-csv>Añadir muestra al carrito</button>
       </div>
       <div class="quick-sku-grid">
-        ${data.products.map((product, index) => `<div><strong>VIT-${String(index + 1).padStart(3, "0")}</strong><span>${product.name}</span></div>`).join("")}
+        ${data.products.map((product, index) => `<div><strong>DF-${String(index + 1).padStart(3, "0")}</strong><span>${product.name}</span></div>`).join("")}
       </div>
     </section>
     ${shopCartDock("Carrito de compra rápida")}`;
@@ -860,29 +905,7 @@ function confirmationPage() {
           </div>
         </article>
       </div>
-      <article class="email-preview confirmation-email" aria-label="Correo de confirmación">
-        <div class="email-preheader">${email.preheader}</div>
-        <div class="email-hero">
-          <div>
-            <span>VITAE PEDIDOS</span>
-            <h3>Pedido confirmado</h3>
-            <p>${email.summary}</p>
-          </div>
-          <strong>${order.id}</strong>
-        </div>
-        <div class="email-body">
-          <p>Hola ${data.pharmacy.owner},</p>
-          <p>Hemos recibido el pedido <strong>${order.id}</strong> de <strong>${data.pharmacy.name}</strong>. La entrega se realizará en la dirección seleccionada.</p>
-          <div class="email-info-grid">
-            <div><span>Total</span><strong>${euro(order.total)}</strong></div>
-            <div><span>Unidades</span><strong>${order.units}</strong></div>
-            <div><span>Entrega</span><strong>${order.shipping}</strong></div>
-            <div><span>Pago</span><strong>${order.payment}</strong></div>
-          </div>
-          ${table(["Producto","Cantidad","Subtotal"], order.lines.map(line => [line.name, String(line.qty), euro(line.subtotal)]))}
-        </div>
-        <div class="email-footer">Correo transaccional generado el ${email.createdAt}. Estado actual: ${email.status}.</div>
-      </article>
+      ${confirmationEmailMarkup(email, order)}
     </section>`;
 }
 
@@ -945,7 +968,7 @@ function adminModules() {
       columns: [["nombre", "Nombre"], ["rol", "Rol"], ["email", "Email"], ["estado", "Estado"]],
       fields: [
         ["nombre", "Nombre", "text"],
-        ["rol", "Rol", "select", ["Administrador Vitae", "Marketing", "Titular de farmacia", "Auxiliar", "Distribuidor"]],
+        ["rol", "Rol", "select", ["Administrador Dermofarma", "Marketing", "Titular de farmacia", "Auxiliar", "Distribuidor"]],
         ["email", "Email", "email"],
         ["estado", "Estado", "select", ["Activo", "Invitado", "Pendiente"]]
       ]
@@ -1022,7 +1045,7 @@ function adminBaseRows(module) {
     usuarios: [
       { nombre: "María Alameda", rol: "Titular de farmacia", email: data.pharmacy.email, estado: "Activo" },
       { nombre: "Clara Vives", rol: "Auxiliar", email: "clara.vives@farmaciaalameda.demo", estado: "Activo" },
-      { nombre: "Nuria Soler", rol: "Marketing", email: "nuria.soler@vitae.demo", estado: "Invitado" }
+      { nombre: "Nuria Soler", rol: "Marketing", email: "nuria.soler@dermofarma.demo", estado: "Invitado" }
     ],
     contactos: data.pharmacy.contacts.map(contact => {
       const [nombre, cargo] = contact.split(" · ");
@@ -1097,6 +1120,16 @@ function table(headers, rows) {
   return `<div class="table-wrap"><table><thead><tr>${headers.map(h => `<th>${h}</th>`).join("")}</tr></thead><tbody>${rows.map(row => `<tr>${row.map(cell => `<td>${cell}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
 }
 
+function escapeHtml(value) {
+  return String(value ?? "").replace(/[&<>"']/g, char => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
+  }[char]));
+}
+
 function badge(text) {
   return `<span class="status ${statusClass(text)}">${text}</span>`;
 }
@@ -1104,7 +1137,7 @@ function badge(text) {
 function incidentForm() {
   return `<form class="form-grid" data-fake-form>
     <select><option>Logística</option><option>Producto</option><option>Facturación</option></select>
-    <select><option>Omega Pro</option><option>Probiovance</option><option>Magnesio Plus</option></select>
+    <select><option>Dermofarma Omega Balance</option><option>Dermofarma Digest Balance</option><option>Dermofarma Magnesio Complex</option></select>
     <select class="wide"><option>ALB-2026-2234</option><option>ALB-2026-2191</option></select>
     <textarea class="wide" placeholder="Descripción"></textarea>
     <input class="wide" type="file">
@@ -1273,7 +1306,7 @@ function downloadCsvSample() {
   const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
   const link = document.createElement("a");
   link.href = URL.createObjectURL(blob);
-  link.download = "muestra-compra-rapida-vitae.csv";
+  link.download = "muestra-compra-rapida-dermofarma.csv";
   link.click();
   URL.revokeObjectURL(link.href);
 }
@@ -1285,7 +1318,7 @@ function sampleCsv() {
     [4, 10]
   ].map(([id, qty]) => {
     const product = data.products.find(item => item.id === id);
-    return `VIT-${String(product.id).padStart(3, "0")},${product.name},${qty}`;
+    return `DF-${String(product.id).padStart(3, "0")},${product.name},${qty}`;
   });
   return `sku,producto,cantidad\n${rows.join("\n")}\n`;
 }
@@ -1316,13 +1349,13 @@ function handleCsvUpload(event) {
       return;
     }
     renderShopWindow();
-    openModal("CSV sin productos", "<p>No se han encontrado SKUs válidos en el archivo. Usa códigos como VIT-001, VIT-002 o VIT-004.</p>");
+    openModal("CSV sin productos", "<p>No se han encontrado SKUs válidos en el archivo. Usa códigos como DF-001, DF-002 o DF-004.</p>");
   };
   reader.readAsText(file);
 }
 
 function parseCsvProducts(text) {
-  const skuMap = Object.fromEntries(data.products.map((product, index) => [`VIT-${String(index + 1).padStart(3, "0")}`, product.id]));
+  const skuMap = Object.fromEntries(data.products.map((product, index) => [`DF-${String(index + 1).padStart(3, "0")}`, product.id]));
   const rows = text.split(/\r?\n/).map(row => row.trim()).filter(Boolean);
   const headers = rows.shift()?.split(",").map(value => value.trim().toLowerCase()) || [];
   const skuIndex = headers.indexOf("sku");
@@ -1529,7 +1562,7 @@ function buildChallengeEmail(index, recipient = data.pharmacy.email) {
   const challenge = data.challenges[index];
   return {
     to: recipient,
-    from: "retos@vitae.com",
+    from: "retos@dermofarma.demo",
     subject: `Inscripción confirmada: ${challenge.title}`,
     provider: "SMTP",
     status: "Enviando",
@@ -1586,7 +1619,8 @@ async function sendChallengeEmail(index) {
       body: JSON.stringify({
         to: email.to,
         subject: email.subject,
-        body: challengeEmailText(email)
+        body: challengeEmailText(email),
+        htmlBody: challengeEmailHtml(email)
       })
     });
     const result = await response.json();
@@ -1628,9 +1662,10 @@ function challengeEmailMarkup(email) {
   return `
     <article class="email-preview" aria-label="Vista previa de correo">
       <div class="email-preheader">${email.preheader}</div>
+      ${emailBrandHeader()}
       <div class="email-hero">
         <div>
-          <span>VITAE RETOS</span>
+          <span>DERMOFARMA RETOS</span>
           <h3>Tu farmacia ya está inscrita</h3>
           <p>${challenge.goal}</p>
         </div>
@@ -1640,10 +1675,10 @@ function challengeEmailMarkup(email) {
         <p>Hola ${data.pharmacy.owner},</p>
         <p>Hemos confirmado la inscripción de <strong>${data.pharmacy.name}</strong> en el reto <strong>${challenge.title}</strong>. Ya podéis empezar a completar los pasos y registrar las evidencias desde el portal.</p>
         <div class="email-info-grid">
-          <div><span>Fecha límite</span><strong>${challenge.deadline}</strong></div>
-          <div><span>Duración</span><strong>${challenge.duration}</strong></div>
-          <div><span>Categoría</span><strong>${challenge.category}</strong></div>
-          <div><span>Validación</span><strong>${challenge.validation}</strong></div>
+          ${emailMetric("Fecha límite", challenge.deadline)}
+          ${emailMetric("Duración", challenge.duration)}
+          ${emailMetric("Categoría", challenge.category)}
+          ${emailMetric("Validación", challenge.validation)}
         </div>
         <h4>Pasos para completar el reto</h4>
         <ol>
@@ -1655,13 +1690,41 @@ function challengeEmailMarkup(email) {
         </div>
         <a class="email-cta" href="#">Entrar al portal y continuar</a>
       </div>
+      ${emailFooter(email)}
     </article>`;
+}
+
+function challengeEmailHtml(email) {
+  const challenge = email.challenge;
+  const rows = [
+    ["Fecha límite", challenge.deadline],
+    ["Duración", challenge.duration],
+    ["Categoría", challenge.category],
+    ["Validación", challenge.validation]
+  ];
+  return emailDocument({
+    preheader: email.preheader,
+    eyebrow: "DERMOFARMA RETOS",
+    title: "Tu farmacia ya está inscrita",
+    intro: challenge.goal,
+    highlight: challenge.reward,
+    body: `
+      <p style="${emailStyles.p}">Hola ${escapeHtml(data.pharmacy.owner)},</p>
+      <p style="${emailStyles.p}">Hemos confirmado la inscripción de <strong>${escapeHtml(data.pharmacy.name)}</strong> en el reto <strong>${escapeHtml(challenge.title)}</strong>. Ya podéis empezar a completar los pasos y registrar las evidencias desde el portal.</p>
+      ${emailHtmlMetrics(rows)}
+      <h2 style="${emailStyles.h2}">Pasos para completar el reto</h2>
+      <ol style="${emailStyles.ol}">${challenge.steps.map(step => `<li style="margin:0 0 8px">${escapeHtml(step)}</li>`).join("")}</ol>
+      <div style="${emailStyles.callout}"><strong>Requisito principal</strong><br>${escapeHtml(challenge.requirement)}</div>
+      <a href="#" style="${emailStyles.cta}">Entrar al portal y continuar</a>
+    `,
+    footer: `Comunicación generada el ${email.createdAt}. Estado actual: ${email.status}.`
+  });
 }
 
 function studyDetail() {
   return `
     <section class="product-sheet">
-      ${detailHero("Estudio clínico · Cardiovascular", "Omega Pro y perfil lipídico", "Resumen ejecutivo de un estudio ficticio para apoyar el consejo farmacéutico sobre suplementación con omega 3 de alta concentración.", "study")}
+      ${detailHero("Estudio clínico · Cardiovascular", "Dermofarma Omega Balance y perfil lipídico", "Resumen ejecutivo de un estudio ficticio para apoyar el consejo farmacéutico sobre suplementación con omega 3 de alta concentración.", "study")}
       <div class="sheet-metrics">
         ${sheetMetric("Muestra", "184 pacientes", "◌")}
         ${sheetMetric("Duración", "12 semanas", "◎")}
@@ -1703,7 +1766,7 @@ function studyDetail() {
 function trainingVideoDetail() {
   return `
     <section class="product-sheet">
-      ${detailHero("Vídeo formativo · Digestivo", "Cápsula Probiovance", "Microformación para explicar microbiota, recomendación activa y preguntas frecuentes en mostrador.", "video")}
+      ${detailHero("Vídeo formativo · Digestivo", "Cápsula Dermofarma Digest Balance", "Microformación para explicar microbiota, recomendación activa y preguntas frecuentes en mostrador.", "video")}
       <div class="media-stage">
         <div class="video-frame"><div class="play-button">▶</div><span>04:35</span></div>
         <div class="media-side">
@@ -1830,7 +1893,7 @@ function marketingDetail(title, type) {
         </article>
         <article class="sheet-panel">
           <h3>Metadatos</h3>
-          ${kv("Producto", title.includes("Digestivo") ? "Probiovance" : title.includes("Sueño") ? "Sueño Natural" : "Magnesio Plus")}
+          ${kv("Producto", title.includes("Digestivo") ? "Dermofarma Digest Balance" : title.includes("Sueño") ? "Dermofarma Noche Retard" : "Dermofarma Magnesio Complex")}
           ${kv("Formato", type)}
           ${kv("Vigencia", "Junio - Julio 2026")}
         </article>
@@ -1871,7 +1934,7 @@ function technicalSheetDetail() {
       <div class="sheet-hero">
         <div class="sheet-copy">
           <span class="status">Ficha técnica · Articulaciones</span>
-          <h2>Oseogen Articular</h2>
+          <h2>Dermofarma Articular Pro</h2>
           <p>Complemento alimenticio de recomendación farmacéutica orientado al cuidado articular, movilidad diaria y mantenimiento del tejido conectivo.</p>
           <div class="sheet-actions">
             <button class="primary">Descargar ficha PDF</button>
@@ -1879,10 +1942,10 @@ function technicalSheetDetail() {
             <button class="ghost">Compartir con equipo</button>
           </div>
         </div>
-        <div class="sheet-packshot" aria-label="Envase simulado de Oseogen Articular">
+        <div class="sheet-packshot" aria-label="Envase simulado de Dermofarma Articular Pro">
           <div class="pack-card">
-            <span>VITAE</span>
-            <strong>Oseogen</strong>
+            <span>DERMOFARMA</span>
+            <strong>Articular Pro</strong>
             <small>Articular</small>
           </div>
           <div class="pack-shadow"></div>
@@ -2132,7 +2195,164 @@ Total: ${euro(order.total)}
 Entrega: ${order.shipping}
 Pago: ${order.payment}
 
-Este mensaje se ha preparado desde la demo del portal Vitae.`;
+Este mensaje se ha preparado desde la demo del portal Dermofarma.`;
+}
+
+function confirmationEmailMarkup(email, order) {
+  return `
+      <article class="email-preview confirmation-email" aria-label="Correo de confirmación">
+        <div class="email-preheader">${email.preheader}</div>
+        ${emailBrandHeader()}
+        <div class="email-hero">
+          <div>
+            <span>DERMOFARMA PEDIDOS</span>
+            <h3>Pedido confirmado</h3>
+            <p>${email.summary}</p>
+          </div>
+          <strong>${order.id}</strong>
+        </div>
+        <div class="email-body">
+          <p>Hola ${data.pharmacy.owner},</p>
+          <p>Hemos recibido el pedido <strong>${order.id}</strong> de <strong>${data.pharmacy.name}</strong>. La entrega se realizará en la dirección seleccionada.</p>
+          <div class="email-info-grid">
+            ${emailMetric("Total", euro(order.total))}
+            ${emailMetric("Unidades", order.units)}
+            ${emailMetric("Entrega", order.shipping)}
+            ${emailMetric("Pago", order.payment)}
+          </div>
+          ${table(["Producto","Cantidad","Subtotal"], order.lines.map(line => [line.name, String(line.qty), euro(line.subtotal)]))}
+        </div>
+        ${emailFooter(email)}
+      </article>`;
+}
+
+function confirmationEmailHtml(email, order) {
+  const rows = [
+    ["Total", euro(order.total)],
+    ["Unidades", String(order.units)],
+    ["Entrega", order.shipping],
+    ["Pago", order.payment]
+  ];
+  const orderRows = order.lines.map(line => `
+    <tr>
+      <td style="${emailStyles.td}">${escapeHtml(line.name)}</td>
+      <td style="${emailStyles.td}">${escapeHtml(line.qty)}</td>
+      <td style="${emailStyles.td} text-align:right">${escapeHtml(euro(line.subtotal))}</td>
+    </tr>`).join("");
+  return emailDocument({
+    preheader: email.preheader,
+    eyebrow: "DERMOFARMA PEDIDOS",
+    title: "Pedido confirmado",
+    intro: email.summary,
+    highlight: order.id,
+    body: `
+      <p style="${emailStyles.p}">Hola ${escapeHtml(data.pharmacy.owner)},</p>
+      <p style="${emailStyles.p}">Hemos recibido el pedido <strong>${escapeHtml(order.id)}</strong> de <strong>${escapeHtml(data.pharmacy.name)}</strong>. La entrega se realizará en la dirección seleccionada.</p>
+      ${emailHtmlMetrics(rows)}
+      <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="${emailStyles.table}">
+        <thead>
+          <tr>
+            <th align="left" style="${emailStyles.th}">Producto</th>
+            <th align="left" style="${emailStyles.th}">Cantidad</th>
+            <th align="right" style="${emailStyles.th}">Subtotal</th>
+          </tr>
+        </thead>
+        <tbody>${orderRows}</tbody>
+      </table>
+    `,
+    footer: `Correo transaccional generado el ${email.createdAt}. Estado actual: ${email.status}.`
+  });
+}
+
+function emailBrandHeader() {
+  return `
+    <div class="email-brand">
+      <strong>Dermofarma</strong>
+      <span>Portal B2B</span>
+    </div>`;
+}
+
+function emailMetric(label, value) {
+  return `<div><span>${label}</span><strong>${value}</strong></div>`;
+}
+
+function emailFooter(email) {
+  return `<div class="email-footer">Dermofarma · Comunicación generada el ${email.createdAt}. Estado actual: ${email.status}.</div>`;
+}
+
+const emailStyles = {
+  page: "margin:0;padding:0;background:#eef4ef;font-family:Arial,Helvetica,sans-serif;color:#294437;",
+  wrap: "width:100%;background:#eef4ef;padding:28px 12px;",
+  card: "max-width:720px;margin:0 auto;background:#ffffff;border:1px solid #d7e1d7;border-radius:8px;overflow:hidden;",
+  preheader: "display:none;max-height:0;overflow:hidden;color:transparent;opacity:0;",
+  brand: "padding:18px 30px;background:#fbfcf8;border-bottom:1px solid #e0e8df;color:#294437;",
+  brandName: "font-size:26px;line-height:1;font-weight:700;letter-spacing:0;",
+  brandSub: "font-size:11px;text-transform:uppercase;color:#7f9a75;letter-spacing:.14em;",
+  hero: "padding:34px 30px;background:#294437;color:#ffffff;",
+  eyebrow: "font-size:12px;font-weight:700;letter-spacing:.12em;color:#d8c18a;text-transform:uppercase;",
+  h1: "margin:12px 0 12px;font-size:38px;line-height:1.05;color:#ffffff;font-weight:700;letter-spacing:0;",
+  intro: "margin:0;color:#edf4ea;font-size:16px;line-height:1.55;",
+  highlight: "display:inline-block;margin-top:22px;padding:13px 16px;border:1px solid rgba(255,255,255,.35);border-radius:8px;background:rgba(255,255,255,.12);color:#ffffff;font-weight:700;",
+  body: "padding:30px;",
+  p: "margin:0 0 14px;color:#34463e;font-size:15px;line-height:1.6;",
+  metrics: "width:100%;margin:22px 0;border-spacing:10px;border-collapse:separate;",
+  metric: "width:50%;padding:14px;border:1px solid #e0e8df;border-radius:8px;background:#f8faf6;vertical-align:top;",
+  metricLabel: "display:block;margin-bottom:8px;color:#6f7f78;font-size:12px;",
+  metricValue: "color:#294437;font-size:15px;line-height:1.35;",
+  h2: "margin:24px 0 10px;color:#294437;font-size:20px;line-height:1.2;",
+  ol: "margin:0 0 20px;padding-left:22px;color:#34463e;font-size:15px;line-height:1.65;",
+  callout: "margin:22px 0;padding:16px;border-radius:8px;background:#eef5ec;color:#466f55;font-size:15px;line-height:1.55;",
+  cta: "display:inline-block;margin-top:2px;padding:14px 18px;border-radius:8px;background:#466f55;color:#ffffff;text-decoration:none;font-weight:700;",
+  table: "margin-top:22px;border-collapse:collapse;width:100%;font-size:14px;color:#34463e;",
+  th: "padding:11px 10px;border-bottom:1px solid #d7e1d7;color:#294437;font-size:12px;text-transform:uppercase;",
+  td: "padding:12px 10px;border-bottom:1px solid #edf2ed;",
+  footer: "padding:18px 30px;border-top:1px solid #e0e8df;background:#fbfcf8;color:#6f7f78;font-size:12px;line-height:1.5;"
+};
+
+function emailDocument({ preheader, eyebrow, title, intro, highlight, body, footer }) {
+  return `<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${escapeHtml(title)}</title>
+  </head>
+  <body style="${emailStyles.page}">
+    <div style="${emailStyles.preheader}">${escapeHtml(preheader)}</div>
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="${emailStyles.wrap}">
+      <tr>
+        <td>
+          <div style="${emailStyles.card}">
+            <div style="${emailStyles.brand}">
+              <div style="${emailStyles.brandName}">Dermofarma</div>
+              <div style="${emailStyles.brandSub}">Portal B2B</div>
+            </div>
+            <div style="${emailStyles.hero}">
+              <div style="${emailStyles.eyebrow}">${escapeHtml(eyebrow)}</div>
+              <h1 style="${emailStyles.h1}">${escapeHtml(title)}</h1>
+              <p style="${emailStyles.intro}">${escapeHtml(intro)}</p>
+              <span style="${emailStyles.highlight}">${escapeHtml(highlight)}</span>
+            </div>
+            <div style="${emailStyles.body}">${body}</div>
+            <div style="${emailStyles.footer}">Dermofarma · ${escapeHtml(footer)}</div>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>`;
+}
+
+function emailHtmlMetrics(rows) {
+  const cells = rows.map(([label, value]) => `
+    <td style="${emailStyles.metric}">
+      <span style="${emailStyles.metricLabel}">${escapeHtml(label)}</span>
+      <strong style="${emailStyles.metricValue}">${escapeHtml(value)}</strong>
+    </td>`);
+  return `<table role="presentation" cellspacing="0" cellpadding="0" style="${emailStyles.metrics}">
+    <tr>${cells.slice(0, 2).join("")}</tr>
+    <tr>${cells.slice(2, 4).join("")}</tr>
+  </table>`;
 }
 
 function emailMailtoHref(email, order) {
@@ -2143,12 +2363,23 @@ function downloadConfirmationEmail(orderId) {
   const order = state.orderConfirmation;
   const email = state.confirmationEmails.find(item => item.orderId === orderId);
   if (!order || !email) return;
+  const boundary = `dermofarma-${Date.now()}`;
   const eml = [
     `To: ${email.to}`,
     `Subject: ${email.subject}`,
+    `Content-Type: multipart/alternative; boundary="${boundary}"`,
+    "",
+    `--${boundary}`,
     "Content-Type: text/plain; charset=UTF-8",
     "",
-    confirmationEmailText(email, order)
+    confirmationEmailText(email, order),
+    "",
+    `--${boundary}`,
+    "Content-Type: text/html; charset=UTF-8",
+    "",
+    confirmationEmailHtml(email, order),
+    "",
+    `--${boundary}--`
   ].join("\n");
   const blob = new Blob([eml], { type: "message/rfc822;charset=utf-8" });
   const link = document.createElement("a");
@@ -2174,7 +2405,8 @@ async function sendConfirmationEmailById(orderId) {
       body: JSON.stringify({
         to: email.to,
         subject: email.subject,
-        body: confirmationEmailText(email, order)
+        body: confirmationEmailText(email, order),
+        htmlBody: confirmationEmailHtml(email, order)
       })
     });
     const result = await response.json();
